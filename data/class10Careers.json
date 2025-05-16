@@ -1,0 +1,170 @@
+{
+  "Science": [
+    {
+      "title": "Science Teacher",
+      "description": "Teach science subjects in schools",
+      "requirements": "Bachelor's degree in education or related field",
+      "skills": ["Teaching", "Communication", "Subject knowledge"],
+      "salary_range": "₹25,000 - ₹45,000 per month",
+      "salary_min": 25000,
+      "salary_max": 45000,
+      "path_type": "higher_education"
+    },
+    {
+      "title": "Lab Technician",
+      "description": "Assist in conducting scientific experiments and managing laboratory equipment",
+      "requirements": "Diploma or certificate in laboratory technology",
+      "skills": ["Attention to detail", "Technical skills", "Safety awareness"],
+      "salary_range": "₹15,000 - ₹30,000 per month",
+      "salary_min": 15000,
+      "salary_max": 30000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Healthcare Assistant",
+      "description": "Assist healthcare professionals in patient care",
+      "requirements": "10+2 with science, basic healthcare certifications",
+      "skills": ["Compassion", "Basic medical knowledge", "Communication"],
+      "salary_range": "₹12,000 - ₹25,000 per month",
+      "salary_min": 12000,
+      "salary_max": 25000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Agricultural Field Assistant",
+      "description": "Support agricultural operations and implement farming techniques",
+      "requirements": "10+2 with science, interest in agriculture",
+      "skills": [
+        "Plant/crop knowledge",
+        "Physical stamina",
+        "Basic technical skills"
+      ],
+      "salary_range": "₹15,000 - ₹30,000 per month",
+      "salary_min": 15000,
+      "salary_max": 30000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Environmental Monitoring Technician",
+      "description": "Collect samples and monitor environmental conditions",
+      "requirements": "10+2 with science background",
+      "skills": ["Data collection", "Observation", "Field work"],
+      "salary_range": "₹18,000 - ₹35,000 per month",
+      "salary_min": 18000,
+      "salary_max": 35000,
+      "path_type": "immediate"
+    }
+  ],
+  "Arts": [
+    {
+      "title": "Office Assistant",
+      "description": "Provide administrative support in office settings",
+      "requirements": "10+2 with basic computer knowledge",
+      "skills": ["Organization", "Communication", "Basic computer skills"],
+      "salary_range": "₹10,000 - ₹20,000 per month",
+      "salary_min": 10000,
+      "salary_max": 20000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Customer Service Representative",
+      "description": "Handle customer inquiries and provide information about products/services",
+      "requirements": "10+2 with good communication skills",
+      "skills": ["Communication", "Patience", "Problem-solving"],
+      "salary_range": "₹12,000 - ₹25,000 per month",
+      "salary_min": 12000,
+      "salary_max": 25000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Content Creator",
+      "description": "Create content for social media, blogs, etc.",
+      "requirements": "10+2 with good writing skills",
+      "skills": ["Creativity", "Writing", "Social media knowledge"],
+      "salary_range": "₹15,000 - ₹40,000 per month",
+      "salary_min": 15000,
+      "salary_max": 40000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Tourism Assistant",
+      "description": "Assist in tourism operations and guide visitors",
+      "requirements": "10+2 with good communication skills",
+      "skills": ["Communication", "Local knowledge", "Customer service"],
+      "salary_range": "₹15,000 - ₹30,000 per month",
+      "salary_min": 15000,
+      "salary_max": 30000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Junior Teacher",
+      "description": "Teach primary or elementary classes",
+      "requirements": "10+2 with interest in teaching",
+      "skills": ["Patience", "Communication", "Basic subject knowledge"],
+      "salary_range": "₹12,000 - ₹25,000 per month",
+      "salary_min": 12000,
+      "salary_max": 25000,
+      "path_type": "higher_education"
+    }
+  ],
+  "Commerce": [
+    {
+      "title": "Accounting Assistant",
+      "description": "Support accounting operations and maintain financial records",
+      "requirements": "10+2 with commerce",
+      "skills": [
+        "Numeracy",
+        "Attention to detail",
+        "Basic accounting knowledge"
+      ],
+      "salary_range": "₹15,000 - ₹30,000 per month",
+      "salary_min": 15000,
+      "salary_max": 30000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Sales Associate",
+      "description": "Sell products or services to customers",
+      "requirements": "10+2 with good communication skills",
+      "skills": ["Communication", "Persuasion", "Customer service"],
+      "salary_range": "₹12,000 - ₹35,000 per month (including incentives)",
+      "salary_min": 12000,
+      "salary_max": 35000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Banking Assistant",
+      "description": "Assist in banking operations and customer service",
+      "requirements": "10+2 with commerce",
+      "skills": [
+        "Customer service",
+        "Attention to detail",
+        "Basic financial knowledge"
+      ],
+      "salary_range": "₹18,000 - ₹35,000 per month",
+      "salary_min": 18000,
+      "salary_max": 35000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Office Administrator",
+      "description": "Manage office operations and administrative tasks",
+      "requirements": "10+2 with commerce and computer skills",
+      "skills": ["Organization", "Communication", "Computer proficiency"],
+      "salary_range": "₹15,000 - ₹30,000 per month",
+      "salary_min": 15000,
+      "salary_max": 30000,
+      "path_type": "immediate"
+    },
+    {
+      "title": "Retail Management Trainee",
+      "description": "Learn retail operations and management",
+      "requirements": "10+2 with commerce",
+      "skills": ["Leadership potential", "Communication", "Problem-solving"],
+      "salary_range": "₹12,000 - ₹25,000 per month",
+      "salary_min": 12000,
+      "salary_max": 25000,
+      "path_type": "higher_education"
+    }
+  ]
+}

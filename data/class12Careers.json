@@ -1,0 +1,435 @@
+{
+  "Science": {
+    "PCM": [
+      {
+        "title": "Engineering - Mechanical",
+        "description": "Design, develop, build, and test mechanical devices and systems",
+        "requirements": "Engineering degree in mechanical field",
+        "skills": [
+          "Mathematics",
+          "Physics",
+          "Problem-solving",
+          "Technical drawing"
+        ],
+        "salary_range": "₹30,000 - ₹80,000 per month for entry-level",
+        "salary_min": 30000,
+        "salary_max": 80000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Engineering - Computer Science",
+        "description": "Develop software applications, computer systems, and technological solutions",
+        "requirements": "Engineering degree in computer science/IT",
+        "skills": [
+          "Programming",
+          "Logical thinking",
+          "Mathematics",
+          "Problem-solving"
+        ],
+        "salary_range": "₹35,000 - ₹100,000 per month for entry-level",
+        "salary_min": 35000,
+        "salary_max": 100000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Mathematics Teacher",
+        "description": "Teach mathematics at middle and high school levels",
+        "requirements": "Bachelor's degree in Mathematics or Education",
+        "skills": ["Mathematics", "Teaching", "Communication", "Patience"],
+        "salary_range": "₹25,000 - ₹45,000 per month",
+        "salary_min": 25000,
+        "salary_max": 45000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Data Analyst",
+        "description": "Analyze data to provide business insights",
+        "requirements": "Bachelor's degree in mathematics, statistics, or related field",
+        "skills": [
+          "Mathematics",
+          "Statistics",
+          "Computer skills",
+          "Analytical thinking"
+        ],
+        "salary_range": "₹25,000 - ₹70,000 per month",
+        "salary_min": 25000,
+        "salary_max": 70000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Architecture",
+        "description": "Design buildings and structures",
+        "requirements": "Bachelor's degree in Architecture",
+        "skills": [
+          "Design",
+          "Mathematics",
+          "Creative thinking",
+          "Technical drawing"
+        ],
+        "salary_range": "₹25,000 - ₹60,000 per month for entry-level",
+        "salary_min": 25000,
+        "salary_max": 60000,
+        "path_type": "higher_education"
+      }
+    ],
+    "PCB": [
+      {
+        "title": "Medical Doctor",
+        "description": "Diagnose and treat health issues and diseases",
+        "requirements": "MBBS degree followed by MD/MS specialization",
+        "skills": ["Biology", "Chemistry", "Critical thinking", "Empathy"],
+        "salary_range": "₹50,000 - ₹150,000+ per month after specialization",
+        "salary_min": 50000,
+        "salary_max": 150000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Dentist",
+        "description": "Diagnose and treat dental issues",
+        "requirements": "BDS degree",
+        "skills": ["Biology", "Chemistry", "Dexterity", "Attention to detail"],
+        "salary_range": "₹40,000 - ₹100,000 per month",
+        "salary_min": 40000,
+        "salary_max": 100000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Pharmacist",
+        "description": "Dispense medications and provide advice on their use",
+        "requirements": "Bachelor's degree in Pharmacy",
+        "skills": [
+          "Biology",
+          "Chemistry",
+          "Attention to detail",
+          "Communication"
+        ],
+        "salary_range": "₹20,000 - ₹50,000 per month",
+        "salary_min": 20000,
+        "salary_max": 50000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Veterinarian",
+        "description": "Diagnose and treat animals' health issues",
+        "requirements": "Bachelor's degree in Veterinary Science",
+        "skills": [
+          "Biology",
+          "Animal handling",
+          "Empathy",
+          "Diagnostic skills"
+        ],
+        "salary_range": "₹30,000 - ₹80,000 per month",
+        "salary_min": 30000,
+        "salary_max": 80000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Biomedical Scientist",
+        "description": "Research in biology and medicine to improve healthcare",
+        "requirements": "Bachelor's and often Master's degree in biomedical sciences",
+        "skills": ["Biology", "Chemistry", "Research", "Analytical thinking"],
+        "salary_range": "₹25,000 - ₹60,000 per month",
+        "salary_min": 25000,
+        "salary_max": 60000,
+        "path_type": "higher_education"
+      }
+    ]
+  },
+  "Commerce": {
+    "With Mathematics": [
+      {
+        "title": "Chartered Accountant",
+        "description": "Prepare and examine financial records and provide financial advice",
+        "requirements": "CA qualification after 12th",
+        "skills": [
+          "Accounting",
+          "Mathematics",
+          "Analytical thinking",
+          "Attention to detail"
+        ],
+        "salary_range": "₹50,000 - ₹150,000 per month after qualification",
+        "salary_min": 50000,
+        "salary_max": 150000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Business Analyst",
+        "description": "Analyze business data and processes to suggest improvements",
+        "requirements": "Bachelor's degree in Commerce or Business",
+        "skills": [
+          "Data analysis",
+          "Business understanding",
+          "Problem-solving",
+          "Communication"
+        ],
+        "salary_range": "₹30,000 - ₹80,000 per month",
+        "salary_min": 30000,
+        "salary_max": 80000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Investment Banker",
+        "description": "Help businesses and governments raise capital",
+        "requirements": "Bachelor's degree in Finance/Commerce, often MBA",
+        "skills": [
+          "Financial analysis",
+          "Mathematics",
+          "Communication",
+          "Negotiation"
+        ],
+        "salary_range": "₹40,000 - ₹200,000+ per month",
+        "salary_min": 40000,
+        "salary_max": 200000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Actuarial Scientist",
+        "description": "Assess financial risks using mathematics and statistics",
+        "requirements": "Actuarial qualification after 12th",
+        "skills": [
+          "Mathematics",
+          "Statistics",
+          "Risk assessment",
+          "Analytical thinking"
+        ],
+        "salary_range": "₹40,000 - ₹150,000 per month after qualification",
+        "salary_min": 40000,
+        "salary_max": 150000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Financial Planner",
+        "description": "Help individuals and businesses create financial plans",
+        "requirements": "Bachelor's degree in Finance or related field",
+        "skills": [
+          "Financial knowledge",
+          "Communication",
+          "Mathematics",
+          "Problem-solving"
+        ],
+        "salary_range": "₹30,000 - ₹100,000 per month",
+        "salary_min": 30000,
+        "salary_max": 100000,
+        "path_type": "higher_education"
+      }
+    ],
+    "Without Mathematics": [
+      {
+        "title": "Marketing Executive",
+        "description": "Plan and execute marketing strategies for products and services",
+        "requirements": "Bachelor's degree in Marketing or related field",
+        "skills": [
+          "Communication",
+          "Creativity",
+          "Strategic thinking",
+          "Market awareness"
+        ],
+        "salary_range": "₹20,000 - ₹60,000 per month",
+        "salary_min": 20000,
+        "salary_max": 60000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Human Resources Manager",
+        "description": "Manage employee relations, recruitment, and HR policies",
+        "requirements": "Bachelor's degree in HR or related field",
+        "skills": [
+          "People management",
+          "Communication",
+          "Conflict resolution",
+          "Organization"
+        ],
+        "salary_range": "₹25,000 - ₹70,000 per month",
+        "salary_min": 25000,
+        "salary_max": 70000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Retail Manager",
+        "description": "Manage retail store operations and staff",
+        "requirements": "Bachelor's degree in Business/Commerce",
+        "skills": [
+          "Leadership",
+          "Sales",
+          "Customer service",
+          "Inventory management"
+        ],
+        "salary_range": "₹25,000 - ₹60,000 per month",
+        "salary_min": 25000,
+        "salary_max": 60000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Event Manager",
+        "description": "Plan and coordinate events for businesses and individuals",
+        "requirements": "Bachelor's degree in Event Management or related field",
+        "skills": [
+          "Organization",
+          "Communication",
+          "Creativity",
+          "Problem-solving"
+        ],
+        "salary_range": "₹20,000 - ₹60,000 per month",
+        "salary_min": 20000,
+        "salary_max": 60000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Public Relations Officer",
+        "description": "Manage communications between organizations and the public",
+        "requirements": "Bachelor's degree in PR, Communications, or related field",
+        "skills": [
+          "Communication",
+          "Writing",
+          "Media relations",
+          "Strategic thinking"
+        ],
+        "salary_range": "₹25,000 - ₹70,000 per month",
+        "salary_min": 25000,
+        "salary_max": 70000,
+        "path_type": "higher_education"
+      }
+    ]
+  },
+  "Arts": {
+    "Humanities": [
+      {
+        "title": "Teacher/Professor",
+        "description": "Teach subjects in schools, colleges, or universities",
+        "requirements": "Bachelor's and often Master's degree in subject area",
+        "skills": [
+          "Subject knowledge",
+          "Communication",
+          "Patience",
+          "Organization"
+        ],
+        "salary_range": "₹30,000 - ₹80,000 per month",
+        "salary_min": 30000,
+        "salary_max": 80000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Social Worker",
+        "description": "Help individuals and communities overcome challenges",
+        "requirements": "Bachelor's degree in Social Work",
+        "skills": [
+          "Empathy",
+          "Communication",
+          "Problem-solving",
+          "Cultural awareness"
+        ],
+        "salary_range": "₹20,000 - ₹50,000 per month",
+        "salary_min": 20000,
+        "salary_max": 50000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Journalist",
+        "description": "Research and report news and information",
+        "requirements": "Bachelor's degree in Journalism or related field",
+        "skills": ["Writing", "Research", "Communication", "Critical thinking"],
+        "salary_range": "₹20,000 - ₹60,000 per month",
+        "salary_min": 20000,
+        "salary_max": 60000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Content Writer",
+        "description": "Create written content for websites, publications, etc.",
+        "requirements": "Bachelor's degree in English or related field",
+        "skills": ["Writing", "Creativity", "Research", "Time management"],
+        "salary_range": "₹20,000 - ₹50,000 per month",
+        "salary_min": 20000,
+        "salary_max": 50000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Psychologist",
+        "description": "Study human behavior and help people overcome mental health challenges",
+        "requirements": "Bachelor's and Master's degree in Psychology",
+        "skills": [
+          "Empathy",
+          "Analytical thinking",
+          "Communication",
+          "Patience"
+        ],
+        "salary_range": "₹30,000 - ₹80,000 per month",
+        "salary_min": 30000,
+        "salary_max": 80000,
+        "path_type": "higher_education"
+      }
+    ],
+    "Fine Arts": [
+      {
+        "title": "Graphic Designer",
+        "description": "Create visual content for various media",
+        "requirements": "Bachelor's degree in Design or related field",
+        "skills": [
+          "Creativity",
+          "Design software",
+          "Visual communication",
+          "Attention to detail"
+        ],
+        "salary_range": "₹20,000 - ₹60,000 per month",
+        "salary_min": 20000,
+        "salary_max": 60000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Interior Designer",
+        "description": "Design interior spaces for functionality and aesthetics",
+        "requirements": "Bachelor's degree in Interior Design",
+        "skills": [
+          "Creativity",
+          "Spatial awareness",
+          "Technical drawing",
+          "Client management"
+        ],
+        "salary_range": "₹25,000 - ₹70,000 per month",
+        "salary_min": 25000,
+        "salary_max": 70000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Fashion Designer",
+        "description": "Design clothing and accessories",
+        "requirements": "Bachelor's degree in Fashion Design",
+        "skills": ["Creativity", "Sewing", "Design", "Trend awareness"],
+        "salary_range": "₹20,000 - ₹80,000 per month",
+        "salary_min": 20000,
+        "salary_max": 80000,
+        "path_type": "higher_education"
+      },
+      {
+        "title": "Photographer",
+        "description": "Take and edit photographs for various purposes",
+        "requirements": "Bachelor's degree in Photography or portfolio",
+        "skills": [
+          "Visual composition",
+          "Technical camera skills",
+          "Editing software",
+          "Creativity"
+        ],
+        "salary_range": "₹15,000 - ₹50,000 per month",
+        "salary_min": 15000,
+        "salary_max": 50000,
+        "path_type": "immediate"
+      },
+      {
+        "title": "Animator",
+        "description": "Create animated visual content",
+        "requirements": "Bachelor's degree in Animation or related field",
+        "skills": [
+          "Drawing",
+          "Animation software",
+          "Storytelling",
+          "Attention to detail"
+        ],
+        "salary_range": "₹25,000 - ₹70,000 per month",
+        "salary_min": 25000,
+        "salary_max": 70000,
+        "path_type": "higher_education"
+      }
+    ]
+  }
+}

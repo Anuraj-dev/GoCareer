@@ -1,0 +1,353 @@
+{
+  "scienceStream": {
+    "description": "Best for students interested in Engineering, Medicine, Research, IT, etc.",
+    "pathways": [
+      {
+        "title": "Engineering",
+        "description": "Designing, developing, and maintaining systems, structures, machines, and processes to solve technical problems.",
+        "requirements": "Class 12 with PCM (Physics, Chemistry, Mathematics), followed by B.Tech/B.E. degree through JEE or other engineering entrance exams.",
+        "skills": [
+          "Problem-solving",
+          "Mathematics",
+          "Analytical thinking",
+          "Technical knowledge",
+          "Computer proficiency"
+        ],
+        "salary_range": "₹30,000 - ₹150,000 per month",
+        "salary_min": 30000,
+        "salary_max": 150000,
+        "path_type": "higher_education",
+        "entrance_exams": ["JEE", "NEET", "CUET"]
+      },
+      {
+        "title": "Medicine",
+        "description": "Diagnose and treat illnesses, diseases and injuries in patients. Provide preventive healthcare advice and promote wellbeing.",
+        "requirements": "Class 12 with PCB (Physics, Chemistry, Biology), followed by MBBS degree through NEET entrance exam.",
+        "skills": [
+          "Clinical knowledge",
+          "Analytical thinking",
+          "Communication",
+          "Empathy",
+          "Decision making"
+        ],
+        "salary_range": "₹50,000 - ₹200,000 per month",
+        "salary_min": 50000,
+        "salary_max": 200000,
+        "path_type": "higher_education",
+        "entrance_exams": ["NEET"]
+      },
+      {
+        "title": "Research Scientist",
+        "description": "Conduct experiments, analyze data and develop new products or improve existing ones in fields like biology, chemistry or physics.",
+        "requirements": "Class 12 with PCM/PCB, followed by Bachelor's and usually Master's/PhD in specific scientific discipline.",
+        "skills": [
+          "Research methodology",
+          "Data analysis",
+          "Critical thinking",
+          "Scientific writing",
+          "Lab techniques"
+        ],
+        "salary_range": "₹40,000 - ₹120,000 per month",
+        "salary_min": 40000,
+        "salary_max": 120000,
+        "path_type": "higher_education",
+        "entrance_exams": ["CUET", "JEE"]
+      }
+    ]
+  },
+  "commerceStream": {
+    "description": "Best for students interested in Business, Finance, Law, Management",
+    "pathways": [
+      {
+        "title": "Chartered Accountant (CA)",
+        "description": "Provide financial advice, audit accounts and provide trustworthy information about financial records. Handle taxation and financial consulting.",
+        "requirements": "Class 12 Commerce, followed by CA course through ICAI with articleship training.",
+        "skills": [
+          "Accounting principles",
+          "Analytical skills",
+          "Attention to detail",
+          "Financial reporting",
+          "Taxation knowledge"
+        ],
+        "salary_range": "₹50,000 - ₹200,000 per month",
+        "salary_min": 50000,
+        "salary_max": 200000,
+        "path_type": "higher_education",
+        "entrance_exams": ["CA Foundation", "CLAT", "CUET"]
+      },
+      {
+        "title": "Company Secretary (CS)",
+        "description": "Ensure compliance with statutory and regulatory requirements and implement decisions made by the board of directors.",
+        "requirements": "Class 12 Commerce, followed by CS course through ICSI.",
+        "skills": [
+          "Corporate law knowledge",
+          "Management",
+          "Communication",
+          "Organizational skills",
+          "Ethics and governance"
+        ],
+        "salary_range": "₹35,000 - ₹100,000 per month",
+        "salary_min": 35000,
+        "salary_max": 100000,
+        "path_type": "higher_education",
+        "key_subjects": [
+          "Accountancy",
+          "Business Studies",
+          "Economics",
+          "Maths (optional)"
+        ]
+      },
+      {
+        "title": "Finance Analyst",
+        "description": "Analyze financial information, prepare reports and forecasts, and help businesses make sound investment decisions.",
+        "requirements": "Class 12 Commerce with Mathematics, followed by Bachelor's in Finance, Commerce or Business Administration.",
+        "skills": [
+          "Financial modeling",
+          "Data analysis",
+          "Critical thinking",
+          "Market knowledge",
+          "Excel expertise"
+        ],
+        "salary_range": "₹30,000 - ₹120,000 per month",
+        "salary_min": 30000,
+        "salary_max": 120000,
+        "path_type": "higher_education",
+        "key_subjects": [
+          "Accountancy",
+          "Business Studies",
+          "Economics",
+          "Maths"
+        ]
+      }
+    ]
+  },
+  "artsStream": {
+    "description": "Best for Creative minds, Social Science lovers, Writers, Lawyers",
+    "pathways": [
+      {
+        "title": "Journalist",
+        "description": "Research, investigate and report news stories through various media platforms like newspapers, television, radio and digital media.",
+        "requirements": "Class 12 Arts, followed by Bachelor's in Journalism and Mass Communication or related field.",
+        "skills": [
+          "Writing",
+          "Communication",
+          "Research",
+          "Critical thinking",
+          "Media literacy"
+        ],
+        "salary_range": "₹25,000 - ₹100,000 per month",
+        "salary_min": 25000,
+        "salary_max": 100000,
+        "path_type": "higher_education",
+        "entrance_exams": [
+          "CUET",
+          "Entrance exams for specific journalism schools"
+        ]
+      },
+      {
+        "title": "Psychologist",
+        "description": "Study human behavior and mental processes to help individuals overcome emotional and psychological challenges.",
+        "requirements": "Class 12 Arts with Psychology, followed by Bachelor's and Master's in Psychology.",
+        "skills": [
+          "Empathy",
+          "Communication",
+          "Analytical thinking",
+          "Patience",
+          "Ethics"
+        ],
+        "salary_range": "₹30,000 - ₹90,000 per month",
+        "salary_min": 30000,
+        "salary_max": 90000,
+        "path_type": "higher_education",
+        "key_subjects": ["Psychology", "Sociology", "Political Science"]
+      },
+      {
+        "title": "Lawyer",
+        "description": "Provide legal advice and representation to individuals, organizations or government bodies in various legal matters.",
+        "requirements": "Class 12 Arts, followed by 5-year integrated law degree or 3-year LLB after bachelor's degree.",
+        "skills": [
+          "Legal knowledge",
+          "Research",
+          "Critical thinking",
+          "Negotiation",
+          "Communication"
+        ],
+        "salary_range": "₹30,000 - ₹200,000 per month",
+        "salary_min": 30000,
+        "salary_max": 200000,
+        "path_type": "higher_education",
+        "entrance_exams": ["CLAT", "AILET"]
+      }
+    ]
+  },
+  "diplomaCourses": {
+    "description": "Polytechnic diplomas with 3 years duration",
+    "pathways": [
+      {
+        "title": "Mechanical Engineering Technician",
+        "description": "Assist engineers in designing, developing, and testing mechanical devices and systems.",
+        "requirements": "Class 10 pass, followed by 3-year Mechanical Engineering Diploma from a Polytechnic institute.",
+        "skills": [
+          "Technical drawing",
+          "Basic engineering concepts",
+          "Computer-aided design",
+          "Problem-solving",
+          "Equipment maintenance"
+        ],
+        "salary_range": "₹15,000 - ₹35,000 per month",
+        "salary_min": 15000,
+        "salary_max": 35000,
+        "path_type": "higher_education",
+        "fields": ["Mechanical", "Civil", "Electrical Engineering"]
+      },
+      {
+        "title": "Fashion Design Assistant",
+        "description": "Support fashion designers in creating clothing designs, selecting fabrics, and preparing for fashion shows.",
+        "requirements": "Class 10 pass, followed by 3-year Fashion Design Diploma from a Polytechnic institute.",
+        "skills": [
+          "Sketching",
+          "Color theory",
+          "Pattern making",
+          "Fabric knowledge",
+          "Trend awareness"
+        ],
+        "salary_range": "₹15,000 - ₹40,000 per month",
+        "salary_min": 15000,
+        "salary_max": 40000,
+        "path_type": "higher_education",
+        "fields": ["Fashion Design", "Textile Design"]
+      }
+    ]
+  },
+  "itiCourses": {
+    "description": "Industrial Training Institute courses with 1-2 years duration",
+    "pathways": [
+      {
+        "title": "Electrician",
+        "description": "Install, maintain and repair electrical systems in homes, businesses and factories, ensuring they operate safely and efficiently.",
+        "requirements": "Class 10 pass, followed by ITI certification in Electrician trade (1-2 years).",
+        "skills": [
+          "Circuit knowledge",
+          "Troubleshooting",
+          "Wiring installation",
+          "Safety protocols",
+          "Basic electronics"
+        ],
+        "salary_range": "₹12,000 - ₹25,000 per month",
+        "salary_min": 12000,
+        "salary_max": 25000,
+        "path_type": "immediate",
+        "trades": ["Electrician"]
+      },
+      {
+        "title": "Computer Operator",
+        "description": "Manage and operate computer systems, handle data entry, process documents, and maintain digital records and files.",
+        "requirements": "Class 10 pass, followed by ITI certification in Computer Operator and Programming Assistant (COPA) trade.",
+        "skills": [
+          "Computer operation",
+          "Basic programming",
+          "Data entry",
+          "Office software",
+          "Hardware troubleshooting"
+        ],
+        "salary_range": "₹10,000 - ₹22,000 per month",
+        "salary_min": 10000,
+        "salary_max": 22000,
+        "path_type": "immediate",
+        "trades": ["Computer Operator", "Digital Photographer"]
+      }
+    ]
+  },
+  "designAndFineArts": {
+    "description": "Courses in animation, graphic design, fashion design and more",
+    "pathways": [
+      {
+        "title": "Graphic Designer",
+        "description": "Create visual concepts using computer software or by hand to communicate ideas that inspire, inform, or captivate consumers.",
+        "requirements": "Class 12 pass (any stream), followed by diploma or degree in Graphic Design.",
+        "skills": [
+          "Creative thinking",
+          "Design software",
+          "Typography",
+          "Color theory",
+          "Visual communication"
+        ],
+        "salary_range": "₹20,000 - ₹60,000 per month",
+        "salary_min": 20000,
+        "salary_max": 60000,
+        "path_type": "higher_education",
+        "institutes": ["NID", "NIFT", "Pearl Academy"]
+      },
+      {
+        "title": "Animator",
+        "description": "Create moving images through various animation techniques for films, television, video games, and digital media.",
+        "requirements": "Class 12 pass (any stream), followed by specialized course in Animation.",
+        "skills": [
+          "Drawing",
+          "Animation software",
+          "Storytelling",
+          "Character design",
+          "Motion principles"
+        ],
+        "salary_range": "₹25,000 - ₹80,000 per month",
+        "salary_min": 25000,
+        "salary_max": 80000,
+        "path_type": "higher_education",
+        "institutes": ["NID", "NIFT", "Private design schools"]
+      }
+    ]
+  },
+  "computerAndCoding": {
+    "description": "Learn coding in Python, Web Development, App Development via online platforms",
+    "pathways": [
+      {
+        "title": "Web Developer",
+        "description": "Build and maintain websites by writing code, ensuring mobile-responsive design, and implementing user-friendly features.",
+        "requirements": "Class 12 pass (any stream), followed by coding bootcamp or self-learning through online platforms.",
+        "skills": [
+          "HTML/CSS",
+          "JavaScript",
+          "Responsive design",
+          "Backend technologies",
+          "Problem-solving"
+        ],
+        "salary_range": "₹20,000 - ₹80,000 per month",
+        "salary_min": 20000,
+        "salary_max": 80000,
+        "path_type": "immediate",
+        "technologies": ["Python", "Web Dev", "App Dev"]
+      },
+      {
+        "title": "Mobile App Developer",
+        "description": "Design, develop and maintain mobile applications for iOS, Android or cross-platform use.",
+        "requirements": "Class 12 pass (any stream), followed by app development courses through online platforms or coding bootcamps.",
+        "skills": [
+          "Programming languages",
+          "UI/UX design",
+          "Problem-solving",
+          "App architecture",
+          "Testing"
+        ],
+        "salary_range": "₹25,000 - ₹100,000 per month",
+        "salary_min": 25000,
+        "salary_max": 100000,
+        "path_type": "immediate",
+        "technologies": ["App Dev", "Cross-platform frameworks"]
+      }
+    ]
+  },
+  "otherOptions": {
+    "openSchooling": {
+      "description": "Flexible for students who want to study non-traditionally or repeat 10th/12th",
+      "provider": "NIOS (National Institute of Open Schooling)"
+    },
+    "integratedPrograms": {
+      "description": "Example: 5-year integrated law, BCA+MCA, science programs, or coaching + school",
+      "examples": [
+        "5-year Law programs",
+        "Integrated BCA+MCA",
+        "Science coaching with school"
+      ]
+    }
+  }
+}
