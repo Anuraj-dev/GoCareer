@@ -250,7 +250,36 @@ function getDefaultCareerRecommendations(userData) {
 // Routes
 // Home page
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {
+    logoPath: "/logo.png", // Adding logo path for the EJS template
+  });
+});
+
+// About Us page
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
+// Explore page
+app.get("/explore", (req, res) => {
+  res.render("explore");
+});
+
+// Insights page
+app.get("/insights", (req, res) => {
+  res.render("insights");
+});
+
+// Help page
+app.get("/help", (req, res) => {
+  res.render("help");
+});
+
+// Search functionality
+app.get("/search", (req, res) => {
+  const query = req.query.q;
+  // Implement search functionality here
+  res.render("search-results", { query });
 });
 
 // Assessment page

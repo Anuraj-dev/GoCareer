@@ -1,0 +1,165 @@
+body {
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+  background-color: #f0f8ff;
+}
+.navbar {
+  background: transparent;
+  font-family: "Space Grotesk", sans-serif;
+  position: relative;
+  z-index: 1;
+}
+.navbar-brand {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: -1px;
+  background: #183550;
+  background-clip: text; /* Standard syntax */
+  -webkit-background-clip: text; /* Safari/Chrome */
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+h1 {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(3rem, 5vw, 4.2rem); /* Responsive font size */
+  letter-spacing: -0.03em;
+  color: #183550;
+  position: relative;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+h1 .outline {
+  -webkit-text-stroke: 2px #183550;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  text-shadow: 2px 2px 0px rgba(24, 53, 80, 0.1);
+}
+h2,
+h3,
+p,
+span {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+.lead {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  letter-spacing: -0.01em;
+  opacity: 0.9;
+  max-width: 85%;
+  color: #183550;
+  margin-top: 1.5rem;
+  line-height: 1.6;
+}
+.nav-link {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  position: relative;
+  padding: 0.5rem 1.8rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  opacity: 0.75;
+}
+.nav-link:hover {
+  opacity: 1;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: #68b0e3;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.nav-link:hover::after {
+  width: 70%;
+}
+.nav-link.active {
+  opacity: 1;
+  font-weight: 600;
+}
+button {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.hero-section {
+  margin-top: 80px;
+}
+.navbar-nav.mx-auto {
+  gap: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.search-input {
+  min-width: 200px;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(24, 53, 80, 0.1);
+  color: #000;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+.search-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(24, 53, 80, 0.2);
+  box-shadow: 0 0 0 2px rgba(24, 53, 80, 0.1);
+}
+.search-btn {
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.hero-btn {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  background: #183550;
+  border: none;
+  transition: all 0.3s ease;
+}
+.hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(24, 53, 80, 0.2);
+  background: #183550;
+}
+/* Add after body styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(24, 53, 80, 0.02),
+    rgba(24, 53, 80, 0.05)
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+/* Add animation classes */
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
