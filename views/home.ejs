@@ -14,17 +14,17 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
   </head>
   <body id="vanta-bg">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
-          <% if (typeof logoPath !== 'undefined') { %>
-          <img src="<%= logoPath %>" style="width: 100px; height: 100px" />
-          <% } else { %>
-          <img src="/logo.png" style="width: 100px; height: 100px" />
-          <% } %> GoCareer
+          <img
+            src="/images/logo.png"
+            style="width: 100px; height: 100px"
+            alt="GoCareer Logo" />
+          GoCareer
         </a>
         <button
           class="navbar-toggler"
