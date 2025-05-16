@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Assessment Test - Go Career</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Custom styles -->
+    <style>
+      :root {
+        --primary-color: #1e88e5;
+        --primary-dark: #0d47a1;
+        --secondary-color: #ff9800;
+        --secondary-dark: #e65100;
+        --success-color: #4caf50;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--primary-dark)
+        );
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+      }
+      .custom-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        margin-top: -2rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .floating-card {
+        transition: all 0.3s ease;
+      }
+
+      .floating-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+      }
+
+      h1 {
+        font-size: 2.4rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      h2 {
+        color: var(--primary-color);
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 0.8rem;
+        margin-top: 2rem;
+        font-weight: 600;
+      }
+
+      .form-step {
+        display: none;
+      }
+
+      .form-step.active {
+        display: block;
+      }
+
+      .progress-container {
+        margin: 2rem auto;
+        max-width: 600px;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+      }
+
+      .btn-outline-secondary {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      .btn-outline-secondary:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.25rem rgba(30, 136, 229, 0.25);
+        margin-top: 0.3rem;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      button {
+        background-color: #ff6f00;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 2rem auto 0;
+        transition: background-color 0.3s ease;
+        font-weight: 600;
+      }
+
+      button:hover {
+        background-color: #ff8f00;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+      }
+
+      .nav-link {
+        color: #1e88e5;
+        text-decoration: none;
+      }
+
+      .nav-link:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: #263238;
+        color: white;
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 3rem;
+      }
+
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        color: white;
+        display: none;
+      }
+
+      .spinner {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #1e88e5;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Styles for dynamically generated career cards */
+      #career-results-container .card {
+        border: 1px solid #e0e0e0;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+
+      #career-results-container .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      #career-results-container .card-title {
+        color: var(--primary-color);
+      }
+
+      #career-results-container .badge {
+        font-size: 0.8rem;
+        padding: 0.4em 0.6em;
+      }
+
+      .text-dark-emphasis {
+        color: #333 !important; /* Ensure text is dark enough on light badges */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Career Assessment Test</h1>
+      <p>Answer a few questions to discover your ideal career path</p>
+    </header>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <p>Generating your career recommendations...</p>
+      <p>This may take a few moments</p>
+    </div>
+
+    <div class="container">
+      <form action="/test" method="POST" id="careerForm">
+        <div class="form-group">
+          <label for="qualification">Highest Qualification</label>
+          <select
+            name="qualification"
+            id="qualification"
+            class="form-select"
+            required>
+            <option value="">Select your qualification</option>
+            <option value="Class 10">Class 10</option>
+            <option value="Class 12">Class 12</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden" id="streamContainer">
+          <label for="stream">Stream</label>
+          <select name="stream" id="stream" class="form-select">
+            <option value="">Select your stream</option>
+            <option value="Science">Science</option>
+            <option value="Commerce">Commerce</option>
+            <option value="Arts">Arts</option>
+          </select>
+        </div>
+        <div class="form-group hidden" id="class12SubjectsContainer">
+          <label for="subjects">Subject Combination</label>
+          <select name="subjects" id="subjects" class="form-select">
+            <option value="">Select your subject combination</option>
+            <!-- Options will be populated dynamically via JavaScript -->
+          </select>
+        </div>
+
+        <div class="form-group hidden" id="higherStudiesContainer">
+          <label for="higherStudies"
+            >Are you planning to do higher studies?</label
+          >
+          <select
+            name="higherStudies"
+            id="higherStudies"
+            class="form-select"
+            required>
+            <option value="">Please select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            class="form-control"
+            min="14"
+            max="25"
+            placeholder="Enter your age"
+            required />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            class="form-control"
+            placeholder="Enter your city/village"
+            required />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">
+          Get Career Recommendations
+        </button>
+      </form>
+
+      <!-- Container for displaying career results -->
+      <div id="career-results-container" class="mt-5"></div>
+
+      <div class="nav-buttons">
+        <a href="/" class="nav-link">← Back to Home</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Go Career - Empowering rural students with career guidance since 2025
+      </p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const qualificationSelect = document.getElementById("qualification");
+        const streamContainer = document.getElementById("streamContainer");
+        const class12SubjectsContainer = document.getElementById(
+          "class12SubjectsContainer"
+        );
+        const subjectsSelect = document.getElementById("subjects");
+        const streamSelect = document.getElementById("stream");
+        const careerForm = document.getElementById("careerForm");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        const higherStudiesContainer = document.getElementById(
+          "higherStudiesContainer"
+        );
+        const higherStudiesSelect = document.getElementById("higherStudies");
+
+        // Initialize the form
+        streamContainer.classList.add("hidden");
+        higherStudiesContainer.classList.add("hidden");
+        class12SubjectsContainer.classList.add("hidden");
+
+        // Handle qualification change
+        qualificationSelect.addEventListener("change", function () {
+          // Always show higher studies option regardless of qualification
+          higherStudiesContainer.classList.remove("hidden");
+          higherStudiesSelect.setAttribute("required", "required");
+
+          // Reset higher studies and stream selections when qualification changes
+          higherStudiesSelect.value = "";
+          streamSelect.value = "";
+
+          if (this.value === "Class 10") {
+            // For Class 10, initially hide stream until higher studies is selected
+            streamContainer.classList.add("hidden");
+            class12SubjectsContainer.classList.add("hidden");
+          } else if (this.value === "Class 12") {
+            // For Class 12, always show stream
+            streamContainer.classList.remove("hidden");
+            if (streamSelect.value) {
+              class12SubjectsContainer.classList.remove("hidden");
+              populateSubjects(streamSelect.value);
+            }
+          } else {
+            // If no qualification selected, hide all
+            streamContainer.classList.add("hidden");
+            class12SubjectsContainer.classList.add("hidden");
+            higherStudiesContainer.classList.add("hidden");
+            higherStudiesSelect.removeAttribute("required");
+          }
+        });
+
+        // Handle higher studies change
+        higherStudiesSelect.addEventListener("change", function () {
+          if (qualificationSelect.value === "Class 10") {
+            if (this.value === "Yes") {
+              // Show stream selection for Class 10 students planning higher studies
+              streamContainer.classList.remove("hidden");
+            } else {
+              // Hide stream for Class 10 students not planning higher studies
+              streamContainer.classList.add("hidden");
+              streamSelect.value = "";
+            }
+          }
+
+          // For Class 12, the stream is always shown regardless of higher studies selection
+        });
+
+        // Handle stream change
+        streamSelect.addEventListener("change", function () {
+          if (qualificationSelect.value === "Class 12" && this.value) {
+            class12SubjectsContainer.classList.remove("hidden");
+            populateSubjects(this.value);
+          } else {
+            class12SubjectsContainer.classList.add("hidden");
+          }
+        });
+
+        // Populate subjects based on stream
+        function populateSubjects(stream) {
+          // Clear existing options
+          subjectsSelect.innerHTML =
+            '<option value="">Select your subject combination</option>';
+
+          // Add options based on stream
+          const subjectOptions = {
+            Science: [
+              "PCM (Physics, Chemistry, Mathematics)",
+              "PCB (Physics, Chemistry, Biology)",
+            ],
+            Commerce: ["With Mathematics", "Without Mathematics"],
+            Arts: ["Humanities", "Fine Arts"],
+          };
+
+          if (subjectOptions[stream]) {
+            subjectOptions[stream].forEach(function (subject) {
+              const option = document.createElement("option");
+              option.value = subject;
+              option.textContent = subject;
+              subjectsSelect.appendChild(option);
+            });
+          }
+        }
+
+        // Show loading overlay on form submit
+        careerForm.addEventListener("submit", function (event) {
+          loadingOverlay.style.display = "flex";
+        });
+      });
+    </script>
+  </body>
+</html>

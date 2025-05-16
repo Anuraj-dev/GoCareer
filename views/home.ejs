@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Go Career - Career Discovery for Rural Students</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1e88e5, #0d47a1);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-buttons {
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #ff6f00;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin-right: 0.5rem;
+        font-weight: 600;
+      }
+
+      .btn:hover {
+        background-color: #ff8f00;
+      }
+
+      .features {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 3rem 0;
+      }
+
+      .feature-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        min-width: 250px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-card h3 {
+        color: #1e88e5;
+        margin-top: 0;
+      }
+
+      .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #ff6f00;
+      }
+
+      .assessment-button-container {
+        text-align: center;
+        margin: 3rem 0;
+      }
+
+      footer {
+        background-color: #263238;
+        color: white;
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .features {
+          flex-direction: column;
+        }
+
+        .feature-card {
+          width: 100%;
+          margin-bottom: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Go Career</h1>
+      <p class="tagline">
+        Discover your perfect career path, tailored for rural students
+      </p>
+      <div class="hero-buttons">
+        <a href="/assessment" class="btn">Take Career Test</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Personalized Recommendations</h3>
+          <p>
+            Get career recommendations tailored to your qualifications,
+            interests, and background.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>AI-Powered Insights</h3>
+          <p>
+            Our advanced AI analyzes your profile to suggest the most suitable
+            career paths for your future.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Detailed Information</h3>
+          <p>
+            Learn about salary expectations, required skills, and educational
+            paths for each career option.
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin: 3rem 0">
+        <h2>How It Works</h2>
+        <p>
+          Just fill out a simple form with your qualification, age, and
+          location. Our system will analyze this information to suggest the best
+          career paths suited to your profile.
+        </p>
+        <a href="/assessment" class="btn">Start Now</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Go Career - Empowering rural students with career guidance since 2025
+      </p>
+    </footer>
+  </body>
+</html>

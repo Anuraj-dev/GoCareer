@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Career Recommendations - Go Career</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1e88e5, #0d47a1);
+        color: white;
+        text-align: center;
+        padding: 1.5rem 0;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .user-summary {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .user-summary h2 {
+        color: #1e88e5;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 0.5rem;
+        margin-top: 0;
+      }
+
+      .user-detail {
+        display: flex;
+        margin-bottom: 0.5rem;
+      }
+
+      .user-detail strong {
+        min-width: 120px;
+      }
+
+      .career-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .career-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .career-card h2 {
+        color: #1e88e5;
+        margin-top: 0;
+      }
+
+      .skill-tag {
+        display: inline-block;
+        background-color: #e3f2fd;
+        color: #1976d2;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .info-section {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+      }
+
+      .info-section h3 {
+        margin-top: 0;
+        color: #555;
+      }
+
+      .source-info {
+        background-color: #fff3e0;
+        border-left: 4px solid #ff9800;
+        padding: 0.8rem;
+        margin-bottom: 2rem;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #ff6f00;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        font-weight: 600;
+      }
+
+      .btn:hover {
+        background-color: #ff8f00;
+      }
+
+      .nav-link {
+        color: #1e88e5;
+        text-decoration: none;
+      }
+
+      .nav-link:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: #263238;
+        color: white;
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Your Career Recommendations</h1>
+      <p>Based on your profile and interests</p>
+    </header>
+
+    <div class="container">
+      <div class="source-info">
+        <strong>Recommendation Source:</strong> <%= recommendationSource %>
+      </div>
+
+      <div class="user-summary">
+        <h2>Your Profile</h2>
+        <div class="user-detail">
+          <strong>Qualification:</strong>
+          <span><%= userData.qualification %></span>
+        </div>
+        <div class="user-detail">
+          <strong>Higher Studies:</strong>
+          <span><%= userData.higherStudies %></span>
+        </div>
+        <% if (userData.stream) { %>
+        <div class="user-detail">
+          <strong>Stream:</strong> <span><%= userData.stream %></span>
+        </div>
+        <% } %> <% if (userData.subjects) { %>
+        <div class="user-detail">
+          <strong>Subjects:</strong> <span><%= userData.subjects %></span>
+        </div>
+        <% } %>
+        <div class="user-detail">
+          <strong>Age:</strong> <span><%= userData.age %></span>
+        </div>
+        <div class="user-detail">
+          <strong>Location:</strong> <span><%= userData.location %></span>
+        </div>
+        <% if (userData.incomeLevel) { %>
+        <div class="user-detail">
+          <strong>Income Level:</strong>
+          <span><%= userData.incomeLevel %></span>
+        </div>
+        <% } %>
+      </div>
+
+      <h2>Recommended Career Paths</h2>
+
+      <% if (careerPaths && careerPaths.length > 0) { %> <%
+      careerPaths.forEach(career => { %>
+      <div class="career-card">
+        <h2><%= career.title %></h2>
+        <p><%= career.description %></p>
+
+        <div class="info-section">
+          <h3>Skills Required</h3>
+          <div>
+            <% career.skills.forEach(skill => { %>
+            <span class="skill-tag"><%= skill %></span>
+            <% }); %>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h3>Requirements</h3>
+          <p><%= career.requirements %></p>
+        </div>
+        <div class="info-section">
+          <h3>Salary Range</h3>
+          <p><%= career.salary_range %></p>
+        </div>
+
+        <% if (career.local_relevance) { %>
+        <div class="info-section">
+          <h3>Local Relevance</h3>
+          <p><%= career.local_relevance %></p>
+        </div>
+        <% } %> <% if (career.path_type) { %>
+        <div class="info-section">
+          <h3>Path Type</h3>
+          <p>
+            <% if (career.path_type === "immediate") { %> Immediate Entry <% }
+            else { %> Higher Education Required <% } %>
+          </p>
+        </div>
+        <% } %>
+      </div>
+      <% }); %> <% } else { %>
+      <div class="career-card">
+        <h2>No career paths found</h2>
+        <p>
+          We couldn't find any career recommendations matching your profile.
+          Please try again with different information.
+        </p>
+      </div>
+      <% } %>
+
+      <div class="nav-buttons">
+        <a href="/assessment" class="nav-link">← Take Test Again</a>
+        <a href="/" class="btn">Back to Home</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Go Career - Empowering rural students with career guidance since 2025
+      </p>
+    </footer>
+  </body>
+</html>
