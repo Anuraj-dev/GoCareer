@@ -20,10 +20,12 @@ app.use(express.static(path.join(__dirname, "public")));
 // Import API routes
 const apiRoutes = require("./routes/api");
 
+const secret = process.env.SECRET;
+
 // Set up session
 app.use(
   session({
-    secret: "gocareer-secret-key",
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 3600000 }, // 1 hour
