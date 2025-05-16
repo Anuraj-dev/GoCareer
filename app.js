@@ -56,10 +56,16 @@ async function getGeminiModel() {
 
 // Helper function to get career recommendations from Gemini AI
 async function getCareerRecommendationsFromAI(userData) {
-  try {
-    const model = await getGeminiModel();
+  const MAX_RETRIES = 3;
+  let retryCount = 0;
 
-    const promptText = `You are a career counseling expert. Provide 6 suitable career paths for a student in rural India.
+  while (retryCount < MAX_RETRIES) {
+    try {
+      console.log(`Attempt ${retryCount + 1} to get AI recommendations...`);
+      const model = await getGeminiModel();
+
+      // Refine the prompt to be more explicit about path_type
+      const promptText = `You are a career counseling expert. Provide 6 suitable career paths for a student in rural India.
 Student Profile:
 - Qualification: ${userData.qualification}
 ${userData.qualification === "Class 12" ? `- Stream: ${userData.stream}` : ""}
@@ -68,117 +74,130 @@ ${
     ? `- Subjects: ${userData.subjects}`
     : ""
 }
-${userData.higherStudies ? `- Higher Studies: ${userData.higherStudies}` : ""}
+- Higher Studies: ${userData.higherStudies || "No"}
 - Age: ${userData.age}
 - Location: ${userData.location}
 
-Output JSON array with 6 objects, each with: title, description (2-3 sentences), requirements, skills (3-5), salary_range (INR monthly), salary_min (number), salary_max (number), path_type ('higher_education' or 'immediate'). Prioritize local/remote jobs. If higher studies is 'Yes', suggest 'higher_education' paths, otherwise 'immediate' paths.`;
+Output JSON array with 6 objects, each with these EXACT fields:
+- title: job/career title
+- description: 2-3 sentences about the career
+- requirements: education/qualification needed
+- skills: array of 3-5 skills needed
+- salary_range: text description (e.g., "₹15,000 - ₹35,000")
+- salary_min: number (e.g., 15000)
+- salary_max: number (e.g., 35000) 
+- path_type: MUST BE EXACTLY "higher_education" or "immediate"
 
-    const result = await model.generateContent(promptText);
-    const response = await result.response;
-    const text = await response.text();
+If Higher Studies is "Yes", ALL careers should have path_type "higher_education".
+If Higher Studies is "No", ALL careers should have path_type "immediate".`;
 
-    try {
-      let cleanedText = text;
-      if (cleanedText.startsWith("```json")) {
-        cleanedText = cleanedText.substring(7);
-      }
-      if (cleanedText.endsWith("```")) {
-        cleanedText = cleanedText.substring(0, cleanedText.length - 3);
-      }
-      cleanedText = cleanedText.trim();
+      const result = await model.generateContent(promptText);
+      const response = await result.response;
+      const text = await response.text();
 
-      const jsonData = JSON.parse(cleanedText);
+      console.log("AI response received. Parsing response...");
 
-      const validatedData = jsonData.filter((career) => {
-        const hasRequiredFields =
-          career.title &&
-          career.description &&
-          career.requirements &&
-          Array.isArray(career.skills) &&
-          career.salary_range &&
-          typeof career.salary_min === "number" &&
-          typeof career.salary_max === "number" &&
-          career.path_type;
-
-        if (!hasRequiredFields) {
-          return false;
+      try {
+        let cleanedText = text;
+        if (cleanedText.startsWith("```json")) {
+          cleanedText = cleanedText.substring(7);
         }
-
-        if (
-          userData.qualification === "Class 10" &&
-          userData.higherStudies === "No"
-        ) {
-          const reqTextLower = career.requirements.toLowerCase();
-          if (
-            reqTextLower.includes("class 12") ||
-            reqTextLower.includes("12th") ||
-            reqTextLower.includes("higher") ||
-            reqTextLower.includes("bachelor") ||
-            reqTextLower.includes("degree") ||
-            reqTextLower.includes("diploma")
-          ) {
-            return false;
-          }
+        if (cleanedText.endsWith("```")) {
+          cleanedText = cleanedText.substring(0, cleanedText.length - 3);
         }
+        cleanedText = cleanedText.trim();
 
-        if (userData.qualification === "Class 12") {
-          const reqTextLower = career.requirements.toLowerCase();
-          const isOnlyClass10 =
-            reqTextLower.includes("class 10") &&
-            !reqTextLower.includes("class 12") &&
-            !reqTextLower.includes("12th") &&
-            !reqTextLower.includes("higher") &&
-            !reqTextLower.includes("bachelor") &&
-            !reqTextLower.includes("degree") &&
-            !reqTextLower.includes("diploma") &&
-            !reqTextLower.includes("online course");
+        // Log the cleaned text for debugging
+        console.log("Cleaned response:", cleanedText.substring(0, 100) + "...");
 
-          if (isOnlyClass10) {
-            return false;
-          }
+        const jsonData = JSON.parse(cleanedText);
 
+        // Fix path_type if needed - ensure it matches user preference
+        jsonData.forEach((career) => {
+          // Ensure path_type matches user preference
           if (userData.higherStudies === "Yes") {
-            if (!(career.salary_min > 30000)) {
-              return false;
-            }
-
-            const meetsEducationCriteria =
-              reqTextLower.includes("bachelor") ||
-              reqTextLower.includes("degree") ||
-              reqTextLower.includes("online course") ||
-              reqTextLower.includes("certification") ||
-              reqTextLower.includes("diploma");
-
-            if (!meetsEducationCriteria) {
-              return false;
-            }
+            career.path_type = "higher_education";
+          } else {
+            career.path_type = "immediate";
           }
-        }
-        return true;
-      });
 
-      if (validatedData.length === 0) {
-        console.error("No valid career paths in AI response");
+          // Ensure salary values are numbers
+          if (typeof career.salary_min !== "number") {
+            career.salary_min = parseInt(career.salary_min) || 0;
+          }
+          if (typeof career.salary_max !== "number") {
+            career.salary_max = parseInt(career.salary_max) || 0;
+          }
+
+          // Ensure skills is an array
+          if (!Array.isArray(career.skills)) {
+            career.skills = career.skills ? [career.skills] : [];
+          }
+        });
+
+        const validatedData = jsonData.filter((career) => {
+          // Simplified validation - check only critical fields
+          const hasRequiredFields =
+            career.title && career.description && career.path_type;
+
+          if (!hasRequiredFields) {
+            console.log(
+              `Invalid career data found: ${JSON.stringify(career).substring(
+                0,
+                100
+              )}`
+            );
+            return false;
+          }
+
+          // Keep other validation logic as needed
+          return true;
+        });
+
+        if (validatedData.length === 0) {
+          console.error("No valid career paths in AI response");
+          if (retryCount < MAX_RETRIES - 1) {
+            retryCount++;
+            continue;
+          }
+          return null;
+        }
+
+        validatedData.sort((a, b) => {
+          const aValue = a.salary_max || a.salary_min || 0;
+          const bValue = b.salary_max || b.salary_min || 0;
+          return bValue - aValue;
+        });
+
+        // Always return at least what we got, even if less than 6
+        return validatedData.slice(0, 6);
+      } catch (jsonError) {
+        console.error("Failed to parse AI response as JSON:", jsonError);
+        console.error("Raw AI response:", text);
+        if (retryCount < MAX_RETRIES - 1) {
+          retryCount++;
+          continue;
+        }
         return null;
       }
-
-      validatedData.sort((a, b) => {
-        const aValue = a.salary_max || a.salary_min || 0;
-        const bValue = b.salary_max || b.salary_min || 0;
-        return bValue - aValue;
-      });
-
-      return validatedData.slice(0, 6);
-    } catch (jsonError) {
-      console.error("Failed to parse AI response as JSON:", jsonError);
-      console.error("Raw AI response:", text);
+    } catch (error) {
+      console.error(
+        `AI recommendation error (attempt ${retryCount + 1}):`,
+        error
+      );
+      if (retryCount < MAX_RETRIES - 1) {
+        retryCount++;
+        await new Promise((resolve) =>
+          setTimeout(resolve, 1000 * Math.pow(2, retryCount))
+        );
+        continue;
+      }
       return null;
     }
-  } catch (error) {
-    console.error("AI recommendation error:", error);
-    return null;
   }
+
+  console.error("All AI recommendation attempts failed");
+  return null;
 }
 
 // Helper function to get default career recommendations
