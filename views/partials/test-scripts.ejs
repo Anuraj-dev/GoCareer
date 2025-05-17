@@ -5,6 +5,23 @@ document.addEventListener("DOMContentLoaded", function() {
   const nextBtn = document.getElementById('nextBtn');
   const prevBtn = document.getElementById('prevBtn');
   let currentStep = 1;
+  
+  // Navbar scroll effect with threshold
+  const navbar = document.querySelector('.navbar');
+  const scrollThreshold = 50; // Only apply scrolled class after 50px of scrolling
+  
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > scrollThreshold) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+  
+  // Check initial scroll position
+  if (window.scrollY > scrollThreshold) {
+    navbar.classList.add('scrolled');
+  }
 
   // Initialize form
   function initForm() {
@@ -134,12 +151,61 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
       }
       
+      // If higher studies is "No", submit form directly
+      if (higherStudies === 'No') {
+        // Show loading overlay
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          // Wait for display to take effect before adding opacity
+          setTimeout(() => {
+            loadingOverlay.style.opacity = '1';
+            
+            // Animate progress bar
+            const progressBar = loadingOverlay.querySelector('.progress-bar');
+            if (progressBar) {
+              let progress = 0;
+              const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 90) {
+                  clearInterval(progressInterval);
+                  progress = 90; // Cap at 90% until actual completion
+                }
+                progressBar.style.width = progress + '%';
+              }, 700);
+            }
+          }, 10);
+        }
+        
+        // Submit form
+        form.submit();
+        return;
+      }
+      
       showStep(3);
     } else if (currentStep === 3) {
       // Show loading overlay
       const loadingOverlay = document.getElementById('loadingOverlay');
       if (loadingOverlay) {
         loadingOverlay.style.display = 'flex';
+        // Wait for display to take effect before adding opacity
+        setTimeout(() => {
+          loadingOverlay.style.opacity = '1';
+          
+          // Animate progress bar
+          const progressBar = loadingOverlay.querySelector('.progress-bar');
+          if (progressBar) {
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+              progress += Math.random() * 15;
+              if (progress > 90) {
+                clearInterval(progressInterval);
+                progress = 90; // Cap at 90% until actual completion
+              }
+              progressBar.style.width = progress + '%';
+            }, 700);
+          }
+        }, 10);
       }
       
       // Submit form
@@ -153,6 +219,20 @@ document.addEventListener("DOMContentLoaded", function() {
       showStep(currentStep - 1);
     }
   });
+
+  // Add higherStudies change handler
+  const higherStudiesSelect = document.getElementById('higherStudies');
+  if (higherStudiesSelect) {
+    higherStudiesSelect.addEventListener('change', function() {
+      if (this.value === 'No') {
+        // If "No" is selected, update button to Submit
+        nextBtn.innerHTML = 'Submit <i class="fas fa-arrow-right ms-2"></i>';
+      } else {
+        // Reset button text if "Yes" is selected
+        nextBtn.innerHTML = 'Continue <i class="fas fa-arrow-right ms-2"></i>';
+      }
+    });
+  }
 
   // Initialize the form
   initForm();

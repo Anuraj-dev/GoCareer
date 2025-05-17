@@ -135,26 +135,113 @@ exports.searchCareers = (query) => {
       }
     });
   }
+
+  // Normalize the query
+  const normalizedQuery = query.trim().toLowerCase();
+  const queryTerms = normalizedQuery.split(/\s+/).filter(term => term.length > 2);
   
   // Filter careers by search query
   const results = allCareers.filter(career => {
-    // Search in various career fields
-    return (
-      (career.title && career.title.toLowerCase().includes(query)) ||
-      (career.description && career.description.toLowerCase().includes(query)) ||
-      (career.requirements && career.requirements.toLowerCase().includes(query)) ||
-      (career.skills && 
-        (Array.isArray(career.skills) 
-          ? career.skills.some(skill => skill.toLowerCase().includes(query))
-          : career.skills.toLowerCase().includes(query))
-      )
-    );
+    // Check for exact title match first (highest priority)
+    if (career.title && career.title.toLowerCase() === normalizedQuery) {
+      career.relevanceScore = 100;
+      return true;
+    }
+    
+    // Calculate a relevance score based on matches
+    let score = 0;
+    
+    // Title matches (high weight)
+    if (career.title) {
+      const titleLower = career.title.toLowerCase();
+      if (titleLower.includes(normalizedQuery)) {
+        score += 50; // Complete phrase match in title
+      } else {
+        // Check for individual term matches in title
+        queryTerms.forEach(term => {
+          if (titleLower.includes(term)) {
+            score += 30; // Individual term match in title
+          }
+        });
+      }
+    }
+    
+    // Description matches (medium weight)
+    if (career.description) {
+      const descLower = career.description.toLowerCase();
+      if (descLower.includes(normalizedQuery)) {
+        score += 25; // Complete phrase match in description
+      } else {
+        // Check for individual term matches in description
+        queryTerms.forEach(term => {
+          if (descLower.includes(term)) {
+            score += 15; // Individual term match in description
+          }
+        });
+      }
+    }
+    
+    // Requirements matches (medium weight)
+    if (career.requirements) {
+      let requirementsText = "";
+      if (Array.isArray(career.requirements)) {
+        requirementsText = career.requirements.join(" ").toLowerCase();
+      } else {
+        requirementsText = career.requirements.toLowerCase();
+      }
+      
+      if (requirementsText.includes(normalizedQuery)) {
+        score += 20;
+      } else {
+        queryTerms.forEach(term => {
+          if (requirementsText.includes(term)) {
+            score += 10;
+          }
+        });
+      }
+    }
+    
+    // Skills matches (medium weight)
+    if (career.skills) {
+      let skillsText = "";
+      if (Array.isArray(career.skills)) {
+        skillsText = career.skills.join(" ").toLowerCase();
+      } else {
+        skillsText = career.skills.toLowerCase();
+      }
+      
+      if (skillsText.includes(normalizedQuery)) {
+        score += 25;
+      } else {
+        queryTerms.forEach(term => {
+          if (skillsText.includes(term)) {
+            score += 15;
+          }
+        });
+      }
+    }
+    
+    // Store the relevance score on the career object
+    career.relevanceScore = score;
+    
+    // Return true if the career is relevant enough
+    return score > 10;
   });
   
-  // Remove duplicates (based on title)
-  const uniqueResults = Array.from(
-    new Map(results.map(item => [item.title, item])).values()
-  );
+  // Remove duplicates (based on title) and keep highest scoring version
+  const uniqueTitles = new Map();
+  
+  results.forEach(career => {
+    const existingCareer = uniqueTitles.get(career.title);
+    if (!existingCareer || existingCareer.relevanceScore < career.relevanceScore) {
+      uniqueTitles.set(career.title, career);
+    }
+  });
+  
+  // Convert map back to array and sort by relevance score
+  const uniqueResults = Array.from(uniqueTitles.values()).sort((a, b) => {
+    return b.relevanceScore - a.relevanceScore;
+  });
   
   return uniqueResults;
 }; 

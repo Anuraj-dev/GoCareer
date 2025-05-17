@@ -198,6 +198,189 @@
               form.classList.add('was-validated');
             }, false);
           });
+
+        // Add form state management
+        const formState = {
+          currentStep: 1,
+          qualification: '',
+          after10th: '',
+          higherStudies: '',
+          shouldSkipCareerStep: false
+        };
+
+        // DOM Elements
+        const qualificationSelect = document.getElementById('qualification');
+        const after10thOptions = document.getElementById('after10thOptions');
+        const streamSelection = document.getElementById('streamSelection');
+        const additionalSubjects = document.getElementById('additionalSubjects');
+        const higherStudiesContainer = document.getElementById('higherStudiesContainer');
+        const higherStudiesSelect = document.getElementById('higherStudies');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const steps = document.querySelectorAll('.step');
+        const progressSteps = document.querySelectorAll('.progress-step');
+        
+        // Reset form sections
+        function resetEducationOptions() {
+          // Hide all education options first
+          after10thOptions.style.display = 'none';
+          streamSelection.style.display = 'none';
+          additionalSubjects.style.display = 'none';
+          higherStudiesContainer.style.display = 'none';
+          
+          // Clear previous selections
+          document.querySelectorAll('input[name="after10th"]').forEach(input => input.checked = false);
+          document.querySelectorAll('input[name="stream"]').forEach(input => input.checked = false);
+          document.getElementById('additionalSubjectsInput').value = '';
+          higherStudiesSelect.value = '';
+          
+          // Update state
+          formState.after10th = '';
+          formState.higherStudies = '';
+        }
+        
+        // Update education options based on qualification
+        function updateEducationOptions() {
+          resetEducationOptions();
+          
+          // Show relevant options based on qualification
+          if (formState.qualification === 'after10th') {
+            after10thOptions.style.display = 'block';
+            higherStudiesContainer.style.display = 'block';
+          } else if (formState.qualification === 'after12th') {
+            streamSelection.style.display = 'block';
+            additionalSubjects.style.display = 'block';
+            higherStudiesContainer.style.display = 'block';
+          }
+        }
+        
+        // Handle qualification change
+        qualificationSelect.addEventListener('change', function() {
+          formState.qualification = this.value;
+          updateEducationOptions();
+        });
+        
+        // Handle higher studies change
+        higherStudiesSelect.addEventListener('change', function() {
+          formState.higherStudies = this.value;
+          formState.shouldSkipCareerStep = (this.value === 'No');
+        });
+        
+        // After10th options change
+        document.querySelectorAll('input[name="after10th"]').forEach(input => {
+          input.addEventListener('change', function() {
+            formState.after10th = this.value;
+            // Show stream selection only if continuing to 11th & 12th
+            if (this.value === 'continue') {
+              streamSelection.style.display = 'block';
+              additionalSubjects.style.display = 'block';
+            } else {
+              streamSelection.style.display = 'none';
+              additionalSubjects.style.display = 'none';
+              // Clear stream selections
+              document.querySelectorAll('input[name="stream"]').forEach(input => input.checked = false);
+              document.getElementById('additionalSubjectsInput').value = '';
+            }
+          });
+        });
+        
+        // Navigation: Show step
+        function showStep(step) {
+          // Hide all steps
+          steps.forEach(s => s.style.display = 'none');
+          // Show current step
+          steps[step-1].style.display = 'block';
+          // Update progress
+          progressSteps.forEach((ps, i) => {
+            if (i+1 < step) {
+              ps.classList.add('active');
+              ps.classList.add('completed');
+            } else if (i+1 === step) {
+              ps.classList.add('active');
+              ps.classList.remove('completed');
+            } else {
+              ps.classList.remove('active');
+              ps.classList.remove('completed');
+            }
+          });
+          
+          // Show/hide previous button
+          prevBtn.style.display = step > 1 ? 'block' : 'none';
+          
+          // Update button text for final step
+          if (step === 3) {
+            nextBtn.innerHTML = 'Submit <i class="fas fa-paper-plane ms-2"></i>';
+          } else {
+            nextBtn.innerHTML = 'Continue <i class="fas fa-arrow-right ms-2"></i>';
+          }
+          
+          formState.currentStep = step;
+        }
+        
+        // Next button click
+        nextBtn.addEventListener('click', function() {
+          let currentStep = formState.currentStep;
+          let form = document.getElementById('careerForm');
+          
+          // Validate current step
+          let isValid = true;
+          
+          if (currentStep === 1) {
+            // Validate step 1
+            if (!qualificationSelect.value || !document.getElementById('age').value || !document.getElementById('location').value) {
+              isValid = false;
+              form.classList.add('was-validated');
+            }
+          } else if (currentStep === 2) {
+            // Validate step 2
+            if (formState.qualification === 'after10th' && !formState.after10th) {
+              isValid = false;
+              alert('Please select what you would like to do after 10th.');
+            } else if (formState.qualification === 'after10th' && formState.after10th === 'continue' && 
+                     !document.querySelector('input[name="stream"]:checked')) {
+              isValid = false;
+              alert('Please select a stream.');
+            } else if (formState.qualification === 'after12th' && 
+                     !document.querySelector('input[name="stream"]:checked')) {
+              isValid = false;
+              alert('Please select a stream.');
+            } else if (!higherStudiesSelect.value) {
+              isValid = false;
+              alert('Please indicate if you plan to do higher studies.');
+            }
+          }
+          
+          if (isValid) {
+            if (currentStep === 1) {
+              showStep(2);
+              updateEducationOptions();
+            } else if (currentStep === 2) {
+              // If user doesn't want higher studies, submit the form instead of showing step 3
+              if (formState.shouldSkipCareerStep) {
+                form.submit();
+              } else {
+                showStep(3);
+              }
+            } else if (currentStep === 3) {
+              // Submit the form
+              form.submit();
+            }
+          }
+        });
+        
+        // Previous button click
+        prevBtn.addEventListener('click', function() {
+          let currentStep = formState.currentStep;
+          
+          if (currentStep > 1) {
+            showStep(currentStep - 1);
+            
+            // If going back to step 1, reset education options to ensure they match the qualification
+            if (currentStep - 1 === 1) {
+              formState.qualification = qualificationSelect.value;
+            }
+          }
+        });
       }, false);
     })();
   `,

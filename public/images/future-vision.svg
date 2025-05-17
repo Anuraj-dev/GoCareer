@@ -1,0 +1,103 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradients -->
+  <rect width="600" height="400" rx="20" fill="#f8fbff"/>
+  <path d="M0 40C0 17.9086 17.9086 0 40 0H560C582.091 0 600 17.9086 600 40V360C600 382.091 582.091 400 560 400H40C17.9086 400 0 382.091 0 360V40Z" fill="url(#paint0_linear)"/>
+
+  <!-- Main Road/Path -->
+  <path d="M50,300 C100,300 150,200 220,200 C290,200 310,300 380,300 C450,300 480,200 550,200" 
+        stroke="#183550" stroke-width="16" stroke-linecap="round" fill="none"/>
+  
+  <!-- Dashed line on road -->
+  <path d="M50,300 C100,300 150,200 220,200 C290,200 310,300 380,300 C450,300 480,200 550,200" 
+        stroke="white" stroke-width="4" stroke-linecap="round" stroke-dasharray="12,12" fill="none"/>
+
+  <!-- Milestone 1: Peer Networks -->
+  <g transform="translate(150, 160)">
+    <!-- Background circle -->
+    <circle cx="0" cy="0" r="40" fill="white" stroke="#68b0e3" stroke-width="2"/>
+    <!-- Peer network icon -->
+    <circle cx="-15" cy="0" r="12" fill="#68b0e3"/>
+    <circle cx="15" cy="0" r="12" fill="#68b0e3"/>
+    <circle cx="0" cy="-20" r="12" fill="#68b0e3"/>
+    <path d="M-10,-5 L10,-5 M-15,0 L15,0 M-10,5 L10,5" stroke="white" stroke-width="2"/>
+    <!-- Connector lines -->
+    <path d="M0,-8 L0,-8 M-7,6 L-5,6 M7,6 L5,6" stroke="#183550" stroke-width="2"/>
+    <!-- Label -->
+    <text x="0" y="60" font-family="'Space Grotesk', sans-serif" font-size="14" text-anchor="middle" fill="#183550">Peer Networks</text>
+  </g>
+
+  <!-- Milestone 2: AI Roadmaps -->
+  <g transform="translate(310, 260)">
+    <!-- Background circle -->
+    <circle cx="0" cy="0" r="40" fill="white" stroke="#183550" stroke-width="2"/>
+    <!-- Brain/AI icon -->
+    <path d="M-15,-15 C-25,-5 -25,5 -15,15 C-5,25 5,25 15,15 C25,5 25,-5 15,-15 C5,-25 -5,-25 -15,-15 Z" 
+          stroke="#183550" stroke-width="3" fill="none"/>
+    <path d="M-10,-10 L10,10 M-10,10 L10,-10 M0,-15 L0,15 M-15,0 L15,0" 
+          stroke="#183550" stroke-width="2"/>
+    <!-- Label -->
+    <text x="0" y="60" font-family="'Space Grotesk', sans-serif" font-size="14" text-anchor="middle" fill="#183550">AI Roadmaps</text>
+  </g>
+
+  <!-- Milestone 3: Language Support -->
+  <g transform="translate(450, 160)">
+    <!-- Background circle -->
+    <circle cx="0" cy="0" r="40" fill="white" stroke="#68b0e3" stroke-width="2"/>
+    <!-- Language icon -->
+    <text x="0" y="8" font-family="'Arial', sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#68b0e3">अ</text>
+    <text x="15" y="-8" font-family="'Arial', sans-serif" font-size="16" text-anchor="middle" fill="#183550">A</text>
+    <text x="-15" y="-8" font-family="'Arial', sans-serif" font-size="16" text-anchor="middle" fill="#183550">क</text>
+    <!-- Label -->
+    <text x="0" y="60" font-family="'Space Grotesk', sans-serif" font-size="14" text-anchor="middle" fill="#183550">Language Support</text>
+  </g>
+
+  <!-- Character on the journey -->
+  <g transform="translate(80, 260)">
+    <!-- Character body -->
+    <circle cx="0" cy="0" r="20" fill="#183550"/>
+    <!-- Character head -->
+    <circle cx="0" cy="-30" r="15" fill="#183550"/>
+    <!-- Arms -->
+    <path d="M0,-10 L20,0 M0,-10 L-15,5" stroke="#183550" stroke-width="5" stroke-linecap="round"/>
+    <!-- Legs -->
+    <path d="M0,0 L15,20 M0,0 L-15,20" stroke="#183550" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Start flag -->
+  <g transform="translate(50, 260)">
+    <rect x="-5" y="-40" width="10" height="40" fill="#68b0e3"/>
+    <polygon points="5,0 5,-40 25,-20" fill="#68b0e3"/>
+    <text x="0" y="-50" font-family="'Space Grotesk', sans-serif" font-size="12" text-anchor="middle" fill="#183550">START</text>
+  </g>
+
+  <!-- Finish flag -->
+  <g transform="translate(550, 160)">
+    <rect x="-5" y="-40" width="10" height="40" fill="#183550"/>
+    <path d="M5,-40 L5,0" stroke="#183550" stroke-width="10"/>
+    <path d="M5,-40 L5,0" stroke="white" stroke-width="10" stroke-dasharray="5,5"/>
+    <text x="0" y="-50" font-family="'Space Grotesk', sans-serif" font-size="12" text-anchor="middle" fill="#183550">GOAL</text>
+  </g>
+
+  <!-- Digital elements -->
+  <g transform="translate(380, 100)">
+    <!-- Data flow lines -->
+    <path d="M-80,20 L-60,0 L-40,20 L-20,0 L0,20 L20,0 L40,20" 
+          stroke="#68b0e3" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+    <path d="M-70,40 L-50,20 L-30,40 L-10,20 L10,40 L30,20" 
+          stroke="#183550" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- Decorative elements -->
+  <circle cx="70" cy="70" r="15" fill="#e3f2fd"/>
+  <circle cx="520" cy="330" r="20" fill="#e3f2fd"/>
+  <circle cx="480" cy="50" r="10" fill="#183550" opacity="0.1"/>
+  <circle cx="120" cy="350" r="8" fill="#183550" opacity="0.1"/>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="paint0_linear" x1="300" y1="0" x2="300" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e3f2fd"/>
+    </linearGradient>
+  </defs>
+</svg> 

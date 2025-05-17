@@ -7,27 +7,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
     <% if (typeof transparent === 'undefined') { var transparent = false; } %>
-    <footer class="<%= transparent ? 'footer-transparent' : 'footer-solid' %>">
+    <footer class="<%= transparent ? 'footer-transparent' : 'footer-solid' %>" style="padding: 1rem 0; border-top: 1px solid rgba(24, 53, 80, 0.1);">
       <div class="container px-4">
-        <div class="row align-items-center py-1">
+        <div class="row align-items-center">
           <div class="col-md-4 text-center text-md-start">
-            <p class="mb-0">
-              &copy; 2025 GoCareer
+            <p class="mb-0" style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.5px; color: #183550; font-size: 1rem;">
+              &copy; 2025 <span style="color: #68b0e3;">Go</span>Career
             </p>
           </div>
           <div class="col-md-4 text-center d-none d-md-block">
-            <p class="mb-0">
-              Empowering rural students
+            <p class="mb-0" style="font-family: 'Plus Jakarta Sans', sans-serif; font-style: italic; color: rgba(24, 53, 80, 0.8); font-size: 0.9rem;">
+              Empowering future careers across rural India
             </p>
           </div>
           <div class="col-md-4 text-center text-md-end">
-            <a href="" class="social-link">
+            <div class="social-links" style="display: flex; justify-content: center; justify-content-md-end; gap: 0.8rem;">
+              <a href="mailto:contact@gocareer.in" class="social-link" style="color: #183550; background: rgba(104, 176, 227, 0.1); width: 35px; height: 35px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s ease; font-size: 1rem;">
               <i class="fa-solid fa-envelope"></i>
             </a>
+              <a href="#" class="social-link" style="color: #183550; background: rgba(104, 176, 227, 0.1); width: 35px; height: 35px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s ease; font-size: 1rem;">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="social-link" style="color: #183550; background: rgba(104, 176, 227, 0.1); width: 35px; height: 35px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s ease; font-size: 1rem;">
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </footer>
+    
+    <!-- Add footer responsive behavior -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const footer = document.querySelector('footer');
+        const scrollThreshold = 100;
+        
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > scrollThreshold) {
+            footer.style.padding = '0.6rem 0';
+          } else {
+            footer.style.padding = '1rem 0';
+          }
+        });
+      });
+    </script>
     
     <% if (typeof useVanta === 'undefined' || useVanta) { %>
       <!-- Three.js for Vanta.js (animation library) -->

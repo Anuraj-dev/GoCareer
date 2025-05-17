@@ -7,9 +7,240 @@
 }) %>
 
 <div class="container mt-5">
-  <div class="content-container">
-    <h1>Explore Careers</h1>
-    <p>Content coming soon</p>
+  <div class="content-container" style="background: rgba(255, 255, 255, 0.95); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 6px 20px rgba(24, 53, 80, 0.08); position: relative; z-index: 1;">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <h1 style="color: #183550; font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem;">Explore Career Paths</h1>
+        <p style="color: rgba(24, 53, 80, 0.8); font-size: 1.1rem; line-height: 1.6; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 2rem;">
+          Discover various career options across different industries and qualification levels. Browse by category or use the search to find specific careers.
+        </p>
+      </div>
+    </div>
+
+    <div class="search-filter-section mb-5" style="background: linear-gradient(135deg, rgba(104, 176, 227, 0.15) 0%, rgba(24, 53, 80, 0.05) 100%); border-radius: 12px; padding: 1.5rem;">
+      <div class="row">
+        <div class="col-md-12 mb-3 mb-md-0">
+          <div class="input-group">
+            <input type="text" class="form-control" id="career-search" placeholder="Search careers..." style="padding: 0.8rem 1.2rem; border-radius: 8px 0 0 8px; border: 1px solid rgba(24, 53, 80, 0.2); font-family: 'Plus Jakarta Sans', sans-serif;">
+            <button class="btn" id="search-btn" style="background: #183550; color: white; border: none; border-radius: 0 8px 8px 0; padding: 0.8rem 1.5rem; font-family: 'Space Grotesk', sans-serif;">
+              <i class="bi bi-search me-2"></i> Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-tabs mb-4">
+      <ul class="nav nav-pills mb-4 justify-content-center" id="career-tabs" role="tablist" style="gap: 0.5rem;">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active filter-btn" data-filter="all" type="button" style="background: transparent; color: #183550; border: 1px solid rgba(24, 53, 80, 0.3); border-radius: 20px; padding: 0.5rem 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">All Careers</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link filter-btn" data-filter="Technology" type="button" style="background: transparent; color: #183550; border: 1px solid rgba(24, 53, 80, 0.3); border-radius: 20px; padding: 0.5rem 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Technology</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link filter-btn" data-filter="Healthcare" type="button" style="background: transparent; color: #183550; border: 1px solid rgba(24, 53, 80, 0.3); border-radius: 20px; padding: 0.5rem 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Healthcare</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link filter-btn" data-filter="Finance" type="button" style="background: transparent; color: #183550; border: 1px solid rgba(24, 53, 80, 0.3); border-radius: 20px; padding: 0.5rem 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Business</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link filter-btn" data-filter="Creative" type="button" style="background: transparent; color: #183550; border: 1px solid rgba(24, 53, 80, 0.3); border-radius: 20px; padding: 0.5rem 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Creative</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link filter-btn" data-filter="Education" type="button" style="background: transparent; color: #183550; border: 1px solid rgba(24, 53, 80, 0.3); border-radius: 20px; padding: 0.5rem 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Education</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="career-cards-container">
+      <div class="row" id="career-cards">
+        <!-- Career Card 1 -->
+        <div class="col-lg-4 col-md-6 mb-4 career-card" data-category="Technology">
+          <div class="career-box" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); transition: all 0.3s ease; height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <div style="background: #183550; padding: 1.2rem; color: white;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin: 0;">Software Developer</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="background: rgba(104, 176, 227, 0.15); color: #183550; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Technology</span>
+                <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">High Demand</span>
+              </div>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 0.95rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1rem; height: 70px; overflow: hidden;">
+                Design, build and maintain software applications and systems. Work with programming languages to create solutions for various business needs.
+              </p>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Salary Range:</span>
+                  <span style="color: #68b0e3; font-family: 'Space Mono', monospace; font-weight: 600; font-size: 0.9rem;">₹5-25 LPA</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Qualification:</span>
+                  <span style="color: #183550; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;">B.Tech/BCA/MCA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Card 2 -->
+        <div class="col-lg-4 col-md-6 mb-4 career-card" data-category="Technology">
+          <div class="career-box" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); transition: all 0.3s ease; height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <div style="background: #183550; padding: 1.2rem; color: white;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin: 0;">Data Scientist</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="background: rgba(104, 176, 227, 0.15); color: #183550; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Technology</span>
+                <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">High Demand</span>
+              </div>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 0.95rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1rem; height: 70px; overflow: hidden;">
+                Analyze complex data to find patterns and insights that help businesses make better decisions. Use statistical methods and machine learning.
+              </p>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Salary Range:</span>
+                  <span style="color: #68b0e3; font-family: 'Space Mono', monospace; font-weight: 600; font-size: 0.9rem;">₹8-30 LPA</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Qualification:</span>
+                  <span style="color: #183550; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;">B.Tech/MSc/PhD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Card 3 -->
+        <div class="col-lg-4 col-md-6 mb-4 career-card" data-category="Healthcare">
+          <div class="career-box" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); transition: all 0.3s ease; height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <div style="background: #183550; padding: 1.2rem; color: white;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin: 0;">Doctor</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="background: rgba(104, 176, 227, 0.15); color: #183550; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Healthcare</span>
+                <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">High Demand</span>
+              </div>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 0.95rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1rem; height: 70px; overflow: hidden;">
+                Diagnose and treat illnesses, injuries, and other health conditions. Specialize in various medical fields such as cardiology, pediatrics, or surgery.
+              </p>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Salary Range:</span>
+                  <span style="color: #68b0e3; font-family: 'Space Mono', monospace; font-weight: 600; font-size: 0.9rem;">₹10-60 LPA</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Qualification:</span>
+                  <span style="color: #183550; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;">MBBS + Specialization</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Card 4 -->
+        <div class="col-lg-4 col-md-6 mb-4 career-card" data-category="Finance">
+          <div class="career-box" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); transition: all 0.3s ease; height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <div style="background: #183550; padding: 1.2rem; color: white;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin: 0;">Financial Analyst</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="background: rgba(104, 176, 227, 0.15); color: #183550; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Finance</span>
+                <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Stable</span>
+              </div>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 0.95rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1rem; height: 70px; overflow: hidden;">
+                Assess financial data and recommend investment strategies. Analyze market trends, company finances, and economic conditions.
+              </p>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Salary Range:</span>
+                  <span style="color: #68b0e3; font-family: 'Space Mono', monospace; font-weight: 600; font-size: 0.9rem;">₹5-20 LPA</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Qualification:</span>
+                  <span style="color: #183550; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;">B.Com/BBA/MBA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Card 5 -->
+        <div class="col-lg-4 col-md-6 mb-4 career-card" data-category="Creative">
+          <div class="career-box" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); transition: all 0.3s ease; height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <div style="background: #183550; padding: 1.2rem; color: white;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin: 0;">Graphic Designer</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="background: rgba(104, 176, 227, 0.15); color: #183550; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Creative</span>
+                <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Growing</span>
+              </div>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 0.95rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1rem; height: 70px; overflow: hidden;">
+                Create visual concepts to communicate ideas that inspire and inform consumers. Develop the overall layout and production design for advertisements and various media.
+              </p>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Salary Range:</span>
+                  <span style="color: #68b0e3; font-family: 'Space Mono', monospace; font-weight: 600; font-size: 0.9rem;">₹3-15 LPA</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Qualification:</span>
+                  <span style="color: #183550; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;">BFA/Design Courses</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Card 6 -->
+        <div class="col-lg-4 col-md-6 mb-4 career-card" data-category="Education">
+          <div class="career-box" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); transition: all 0.3s ease; height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <div style="background: #183550; padding: 1.2rem; color: white;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin: 0;">Teacher</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="background: rgba(104, 176, 227, 0.15); color: #183550; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Education</span>
+                <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-family: 'Plus Jakarta Sans', sans-serif;">Stable</span>
+              </div>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 0.95rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1rem; height: 70px; overflow: hidden;">
+                Educate students at various levels, from elementary to higher education. Develop curriculum, assess student progress, and foster learning environments.
+              </p>
+              <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Salary Range:</span>
+                  <span style="color: #68b0e3; font-family: 'Space Mono', monospace; font-weight: 600; font-size: 0.9rem;">₹3-12 LPA</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem;">Qualification:</span>
+                  <span style="color: #183550; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;">B.Ed/M.Ed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- No results message -->
+      <div id="no-results" class="text-center py-5" style="display: none;">
+        <img src="/images/no-results.svg" alt="No results found" style="width: 120px; margin-bottom: 1.5rem; opacity: 0.8;">
+        <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin-bottom: 1rem;">No Careers Found</h3>
+        <p style="color: rgba(24, 53, 80, 0.7); font-family: 'Plus Jakarta Sans', sans-serif; max-width: 500px; margin: 0 auto 1.5rem;">
+          Try different search terms or browse careers by category.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-section mt-5 text-center" style="background: linear-gradient(135deg, rgba(24, 53, 80, 0.1) 0%, rgba(104, 176, 227, 0.1) 100%); border-radius: 12px; padding: 2rem; margin-top: 3rem;">
+      <h2 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Not Sure Where to Start?</h2>
+      <p style="color: rgba(24, 53, 80, 0.8); font-size: 1.1rem; font-family: 'Plus Jakarta Sans', sans-serif; max-width: 600px; margin: 0 auto 1.5rem;">
+        Take our personalized career assessment to discover paths that match your interests, skills, and qualifications.
+      </p>
+      <a href="/assessment" class="btn" style="background: #183550; color: white; padding: 0.8rem 2.5rem; font-family: 'Space Grotesk', sans-serif; border-radius: 8px; border: none; transition: all 0.3s ease;">Take Career Assessment</a>
+    </div>
   </div>
 </div>
 
@@ -17,3 +248,120 @@
   useVanta: false,
   transparent: true
 }) %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality for buttons
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const careerCards = document.querySelectorAll('.career-card');
+    const noResultsMessage = document.getElementById('no-results');
+    
+    // Add active class to filter buttons when clicked
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Get filter value
+        const filterValue = this.getAttribute('data-filter');
+        
+        // Hide all cards first
+        careerCards.forEach(card => {
+          card.style.display = 'none';
+        });
+        
+        // Show cards based on filter
+        let visibleCount = 0;
+        
+        if (filterValue === 'all') {
+          careerCards.forEach(card => {
+            card.style.display = 'block';
+            visibleCount++;
+          });
+        } else {
+          careerCards.forEach(card => {
+            if (card.getAttribute('data-category') === filterValue) {
+              card.style.display = 'block';
+              visibleCount++;
+            }
+          });
+        }
+        
+        // Show/hide no results message
+        noResultsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+      });
+    });
+    
+    // Search functionality
+    const searchInput = document.getElementById('career-search');
+    const searchButton = document.getElementById('search-btn');
+    
+    function performSearch() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      
+      // Reset filters
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      document.querySelector('[data-filter="all"]').classList.add('active');
+      
+      // Hide all cards
+      careerCards.forEach(card => {
+        card.style.display = 'none';
+      });
+      
+      // If search is empty, show all
+      if (searchTerm === '') {
+        careerCards.forEach(card => {
+          card.style.display = 'block';
+        });
+        noResultsMessage.style.display = 'none';
+        return;
+      }
+      
+      // Search through cards
+      let visibleCount = 0;
+      careerCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        const category = card.getAttribute('data-category').toLowerCase();
+        const qualification = card.querySelectorAll('span')[5].textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || 
+            description.includes(searchTerm) || 
+            category.includes(searchTerm) ||
+            qualification.includes(searchTerm)) {
+          card.style.display = 'block';
+          visibleCount++;
+        }
+      });
+      
+      // Show/hide no results message
+      noResultsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+    
+    // Search on button click
+    searchButton.addEventListener('click', performSearch);
+    
+    // Search on Enter key
+    searchInput.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    // Add hover effect to career boxes
+    const careerBoxes = document.querySelectorAll('.career-box');
+    careerBoxes.forEach(box => {
+      box.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 8px 20px rgba(24, 53, 80, 0.12)';
+      });
+      box.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 15px rgba(24, 53, 80, 0.08)';
+      });
+    });
+  });
+</script>

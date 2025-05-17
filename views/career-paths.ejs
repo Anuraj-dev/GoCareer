@@ -15,6 +15,7 @@
             background: url('/images/background.jpeg') center/cover no-repeat fixed;
             min-height: 100vh;
             position: relative;
+            padding-top: 80px;
         }
 
         /* Add an overlay to ensure text readability */
@@ -42,12 +43,22 @@
 
         /* Navbar Styles */
         .navbar {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.95);
             font-family: "Space Grotesk", sans-serif;
-            position: relative;
-            z-index: 1;
-            padding: 0.3rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 1rem 0;
             margin-bottom: 0;
+            box-shadow: 0 2px 10px rgba(24, 53, 80, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.3rem 0;
+            box-shadow: 0 2px 15px rgba(24, 53, 80, 0.15);
         }
 
         .navbar-nav.mx-auto {
@@ -55,6 +66,7 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -63,17 +75,23 @@
             font-size: 2.4rem;
             letter-spacing: -1px;
             color: #183550;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled .navbar-brand {
+            font-size: 2rem;
         }
 
         /* Search Styles */
         .search-input {
             min-width: 200px;
             padding: 0.6rem 1rem;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(24, 53, 80, 0.1);
+            background: #ffffff;
+            border: 1px solid rgba(24, 53, 80, 0.3);
+            border-radius: 8px;
             color: #000;
-            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(24, 53, 80, 0.15);
         }
 
         .search-input::placeholder {
@@ -81,9 +99,10 @@
         }
 
         .search-input:focus {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(24, 53, 80, 0.2);
-            box-shadow: 0 0 0 2px rgba(24, 53, 80, 0.1);
+            background: #ffffff;
+            border-color: rgba(24, 53, 80, 0.5);
+            box-shadow: 0 2px 8px rgba(24, 53, 80, 0.25);
+            outline: none;
         }
 
         .search-btn {
@@ -106,6 +125,11 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             opacity: 0.75;
+        }
+
+        .navbar.scrolled .nav-link {
+            padding: 0.4rem 1.5rem;
+            font-size: 1rem;
         }
 
         .nav-link:hover {
@@ -232,6 +256,51 @@
 
         .career-card-body {
             padding: 1.5rem;
+        }
+
+        .career-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(24, 53, 80, 0.05);
+            border-top: 1px solid rgba(24, 53, 80, 0.1);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .career-match {
+            display: flex;
+            align-items: center;
+        }
+
+        .match-label {
+            font-size: 1rem;
+            color: #183550;
+            margin-right: 0.5rem;
+        }
+
+        .match-value {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #68b0e3;
+        }
+
+        .explore-btn {
+            background: #68b0e3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .explore-btn:hover {
+            background: #183550;
+            transform: translateY(-2px);
         }
 
         .career-stats {
@@ -397,41 +466,53 @@
         </div>
       </div>
 
-      <div class="user-summary">
-        <div class="user-summary-header">
-          <h2 style="margin-bottom: 0;">Your Profile</h2>
-          <i class="bi bi-chevron-down toggle-icon"></i>
+      <div class="user-summary" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 247, 255, 0.95) 100%); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 6px 20px rgba(24, 53, 80, 0.08); border: 1px solid rgba(104, 176, 227, 0.2);">
+        <div class="user-summary-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-bottom: 1px dashed rgba(104, 176, 227, 0.3); padding-bottom: 0.8rem; margin-bottom: 0.5rem;">
+          <h2 style="margin-bottom: 0; color: #183550; font-size: 1.5rem; font-weight: 600; display: flex; align-items: center;">
+            <i class="bi bi-person-badge" style="margin-right: 10px; color: #68b0e3; font-size: 1.6rem;"></i>
+            Your Profile
+          </h2>
+          <span class="toggle-btn" style="background: rgba(104, 176, 227, 0.15); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+            <i class="bi bi-chevron-down toggle-icon" style="color: #183550; transition: transform 0.3s ease;"></i>
+          </span>
         </div>
-        <div class="user-summary-content">
-          <div class="user-detail">
-            <strong>Qualification:</strong>
-            <span><%= userData.qualification %></span>
+        <div class="user-summary-content" style="padding-top: 0.5rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Qualification:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.qualification %></span>
+            </div>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Higher Studies:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.higherStudies %></span>
+            </div>
+            <% if (userData.stream) { %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Stream:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.stream %></span>
+            </div>
+            <% } %> 
+            <% if (userData.subjects) { %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Subjects:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.subjects %></span>
+            </div>
+            <% } %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Age:</strong>
+              <span style="color: #183550; font-size: 1.1rem;"><%= userData.age %></span>
+            </div>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Location:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.location %></span>
+            </div>
+            <% if (userData.incomeLevel) { %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Income Level:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.incomeLevel %></span>
+            </div>
+            <% } %>
           </div>
-          <div class="user-detail">
-            <strong>Higher Studies:</strong>
-            <span><%= userData.higherStudies %></span>
-          </div>
-          <% if (userData.stream) { %>
-          <div class="user-detail">
-            <strong>Stream:</strong> <span><%= userData.stream %></span>
-          </div>
-          <% } %> <% if (userData.subjects) { %>
-          <div class="user-detail">
-            <strong>Subjects:</strong> <span><%= userData.subjects %></span>
-          </div>
-          <% } %>
-          <div class="user-detail">
-            <strong>Age:</strong> <span><%= userData.age %></span>
-          </div>
-          <div class="user-detail">
-            <strong>Location:</strong> <span><%= userData.location %></span>
-          </div>
-          <% if (userData.incomeLevel) { %>
-          <div class="user-detail">
-            <strong>Income Level:</strong>
-            <span><%= userData.incomeLevel %></span>
-          </div>
-          <% } %>
         </div>
       </div>
 
@@ -486,15 +567,9 @@
               <% } %>
             </div>
           </div>
-          <% if (career.match_percentage) { %>
           <div class="career-card-footer">
-            <div class="career-match">
-              <span class="match-label">Match Score:</span>
-              <span class="match-value"><%= career.match_percentage %>%</span>
-            </div>
             <button class="explore-btn">Explore More</button>
           </div>
-          <% } %>
         </div>
         <% }); %>
       </div>
@@ -514,8 +589,8 @@
       <% } %>
 
       <div class="nav-buttons">
-        <a href="/assessment" class="nav-link">← Take Test Again</a>
-        <a href="/" class="btn">Back to Home</a>
+        <button onclick="window.location.href='/assessment'" class="nav-link" style="background: transparent; color: #183550; border: 2px solid #183550; border-radius: 8px; opacity: 1;">← Take Test Again</button>
+        <button onclick="window.location.href='/'" class="btn" style="background: #183550; color: white; padding: 0.8rem 2rem;">Back to Home</button>
       </div>
     </div>
 
@@ -523,8 +598,6 @@
       useVanta: false,
       transparent: true
     }) %>
-
-    <link rel="stylesheet" href="/css/career-paths.css">
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -553,6 +626,22 @@
         userSummaryHeader.addEventListener('click', function() {
           userSummary.classList.toggle('expanded');
         });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+        
+        // Check initial scroll position
+        if (window.scrollY > 10) {
+          navbar.classList.add('scrolled');
+        }
       });
     </script>
   </body>

@@ -3,6 +3,7 @@ body {
   background: url('/images/background.jpeg') center/cover no-repeat fixed;
   min-height: 100vh;
   position: relative;
+  padding-top: 70px;
 }
 
 /* Search Styles */
@@ -57,12 +58,25 @@ body::before {
 
 /* Navbar Styles */
 .navbar {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
   font-family: "Space Grotesk", sans-serif;
-  position: relative;
-  z-index: 1;
-  padding: 0.3rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0.6rem 0;
   margin-bottom: 0;
+  box-shadow: 0 2px 8px rgba(24, 53, 80, 0.05);
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(104, 176, 227, 0.1);
+}
+
+.navbar.scrolled {
+  padding: 0;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 6px rgba(24, 53, 80, 0.08);
 }
 
 .navbar-nav.mx-auto {
@@ -70,14 +84,22 @@ body::before {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  transition: all 0.3s ease;
 }
 
 .navbar-brand {
   font-family: "Space Grotesk", monospace;
   font-weight: 700;
-  font-size: 2.4rem;
+  font-size: 2rem;
   letter-spacing: -1px;
   color: #183550;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.navbar.scrolled .navbar-brand {
+  font-size: 1.8rem;
+  padding: 0.1rem 0;
 }
 
 .nav-link {
@@ -85,10 +107,15 @@ body::before {
   font-weight: 500;
   letter-spacing: -0.2px;
   position: relative;
-  padding: 0.5rem 1.8rem;
-  font-size: 1.1rem;
+  padding: 0.4rem 1.5rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  opacity: 0.75;
+  opacity: 0.85;
+}
+
+.navbar.scrolled .nav-link {
+  padding: 0.2rem 1.5rem;
+  font-size: 0.95rem;
 }
 
 .nav-link:hover {
@@ -358,4 +385,26 @@ body::before {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Add compressed navbar styles */
+.navbar-nav {
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled .navbar-nav {
+  padding: 0;
+}
+
+/* Adjust the navbar container padding */
+.navbar .container {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled .container {
+  padding-top: 0;
+  padding-bottom: 0;
 } 

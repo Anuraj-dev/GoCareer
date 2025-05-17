@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Magnifying Glass Handle -->
+  <path d="M136.5 136.5L175 175" stroke="#183550" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- Magnifying Glass Circle -->
+  <circle cx="85" cy="85" r="55" fill="#F0F7FF" stroke="#68B0E3" stroke-width="6"/>
+  
+  <!-- Crossed lines inside the magnifying glass -->
+  <path d="M65 65L105 105" stroke="#183550" stroke-width="6" stroke-linecap="round"/>
+  <path d="M105 65L65 105" stroke="#183550" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Accent elements -->
+  <circle cx="130" cy="45" r="8" fill="#68B0E3"/>
+  <circle cx="50" cy="140" r="10" fill="#68B0E3" opacity="0.3"/>
+  <circle cx="160" cy="110" r="6" fill="#183550" opacity="0.2"/>
+</svg> 
