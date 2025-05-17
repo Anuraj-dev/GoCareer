@@ -1,0 +1,5 @@
+{"level":"info","message":"[App.js /test] Attempting AI recommendations for session: qvFTexUBnH0n7KxOX6GuVujDjRL2ttpR","timestamp":"2025-05-17T10:44:17.946Z","userData":{"after10th":null,"age":"17","higherStudies":"Yes","incomeLevel":"high","interests":["healthcare"],"location":"delhi ","qualification":"Class 12","stream":"Science","subjects":"PCB"}}
+{"level":"info","message":"AI Service: Processing career recommendation request qvFTexUBnH0n7KxOX6GuVujDjRL2ttpR","timestamp":"2025-05-17T10:44:17.986Z","userData":{"after10th":null,"age":"17","higherStudies":"Yes","incomeLevel":"high","interests":["healthcare"],"location":"delhi ","qualification":"Class 12","stream":"Science","subjects":"PCB"}}
+{"level":"info","message":"AI Service: Attempt 1 for request qvFTexUBnH0n7KxOX6GuVujDjRL2ttpR","timestamp":"2025-05-17T10:44:17.995Z"}
+{"level":"info","message":"AI Service: Successfully generated recommendations for request qvFTexUBnH0n7KxOX6GuVujDjRL2ttpR","timestamp":"2025-05-17T10:44:27.172Z"}
+{"level":"info","message":"[App.js /test] AI recommendations successful for session: qvFTexUBnH0n7KxOX6GuVujDjRL2ttpR","timestamp":"2025-05-17T10:44:27.177Z"}
