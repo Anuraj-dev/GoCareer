@@ -4,6 +4,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 
+app.set("trust proxy", 1);
+
 // Import configuration
 const config = require("./config");
 
@@ -39,35 +41,41 @@ app.use((err, req, res, next) => {
   logger.error("Unhandled error:", { error: err.message, stack: err.stack });
   res.status(500).render("error", {
     message: "Internal server error",
-    error: config.server.env === 'development' ? err : {},
+    error: config.server.env === "development" ? err : {},
   });
 });
 
 // Handle 404 errors
 app.use((req, res) => {
-  res.status(404).render("error", { 
-    message: "The page you requested could not be found.", 
-    error: { status: 404 } 
+  res.status(404).render("error", {
+    message: "The page you requested could not be found.",
+    error: { status: 404 },
   });
 });
 
 // Start the server with port fallback logic
 const PORT = config.server.port;
-const server = app.listen(PORT, () => {
-  console.log(`Go Career Server running on port ${PORT}`);
-  console.log(`Open http://localhost:${PORT} in your browser to access Go Career`);
-}).on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(`Port ${PORT} is already in use.`);
-    console.log(`Attempting to use alternative port ${PORT + 1}...`);
-    // Try the next port
-    const newPort = PORT + 1;
-    server.close();
-    app.listen(newPort, () => {
-      console.log(`Go Career Server running on alternative port ${newPort}`);
-      console.log(`Open http://localhost:${newPort} in your browser to access Go Career`);
-    });
-  } else {
-    console.error('Error starting server:', err);
-  }
-});
+const server = app
+  .listen(PORT, () => {
+    console.log(`Go Career Server running on port ${PORT}`);
+    console.log(
+      `Open http://localhost:${PORT} in your browser to access Go Career`
+    );
+  })
+  .on("error", (err) => {
+    if (err.code === "EADDRINUSE") {
+      console.error(`Port ${PORT} is already in use.`);
+      console.log(`Attempting to use alternative port ${PORT + 1}...`);
+      // Try the next port
+      const newPort = PORT + 1;
+      server.close();
+      app.listen(newPort, () => {
+        console.log(`Go Career Server running on alternative port ${newPort}`);
+        console.log(
+          `Open http://localhost:${newPort} in your browser to access Go Career`
+        );
+      });
+    } else {
+      console.error("Error starting server:", err);
+    }
+  });
