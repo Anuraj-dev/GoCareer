@@ -1,0 +1,239 @@
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("careerForm");
+  const steps = document.querySelectorAll('.step');
+  const progressSteps = document.querySelectorAll('.progress-step');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  let currentStep = 1;
+  
+  // Navbar scroll effect with threshold
+  const navbar = document.querySelector('.navbar');
+  const scrollThreshold = 50; // Only apply scrolled class after 50px of scrolling
+  
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > scrollThreshold) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+  
+  // Check initial scroll position
+  if (window.scrollY > scrollThreshold) {
+    navbar.classList.add('scrolled');
+  }
+
+  // Initialize form
+  function initForm() {
+    updateProgressBar();
+    setupEducationHandlers();
+    showStep(1);
+  }
+
+  // Show specific step
+  function showStep(stepNumber) {
+    steps.forEach(step => {
+      step.style.display = 'none';
+    });
+    
+    document.getElementById(`step${stepNumber}`).style.display = 'block';
+    currentStep = stepNumber;
+    updateProgressBar();
+    
+    // Update progress bar container class for line animation
+    document.querySelector('.card-body').className = `card-body step-${stepNumber}`;
+    
+    prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
+    nextBtn.innerHTML = currentStep === 3 ? 'Submit <i class="fas fa-arrow-right ms-2"></i>' : 'Continue <i class="fas fa-arrow-right ms-2"></i>';
+  }
+
+  // Update progress bar
+  function updateProgressBar() {
+    progressSteps.forEach(step => {
+      const stepNum = parseInt(step.dataset.step);
+      if (stepNum < currentStep) {
+        step.classList.add('completed');
+        step.classList.remove('active');
+      } else if (stepNum === currentStep) {
+        step.classList.add('active');
+        step.classList.remove('completed');
+      } else {
+        step.classList.remove('active', 'completed');
+      }
+    });
+  }
+
+  // Setup education handlers
+  function setupEducationHandlers() {
+    const qualificationSelect = document.getElementById('qualification');
+    const streamContainer = document.getElementById('streamSelection');
+    const after10thOptions = document.getElementById('after10thOptions');
+
+    qualificationSelect.addEventListener('change', function() {
+      const selectedValue = this.value;
+      document.querySelectorAll('.education-options').forEach(el => {
+        el.style.display = 'none';
+      });
+      
+      if (selectedValue === 'after10th') {
+        after10thOptions.style.display = 'block';
+        document.getElementById('higherStudiesContainer').style.display = 'block';
+      } else if (selectedValue === 'after12th') {
+        streamContainer.style.display = 'block';
+        document.getElementById('additionalSubjects').style.display = 'block';
+        document.getElementById('higherStudiesContainer').style.display = 'block';
+      }
+    });
+
+    // After 10th option changes
+    document.querySelectorAll('input[name="after10th"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'continue') {
+          streamContainer.style.display = 'block';
+        } else {
+          streamContainer.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // Handle next button click
+  nextBtn.addEventListener('click', function() {
+    if (currentStep === 1) {
+      // Validate step 1
+      const age = document.getElementById('age').value;
+      const location = document.getElementById('location').value;
+      const qualification = document.getElementById('qualification').value;
+      
+      if (!qualification) {
+        alert('Please select your qualification');
+        return;
+      }
+      if (!age || age < 14 || age > 25) {
+        alert('Please enter a valid age between 14 and 25');
+        return;
+      }
+      if (!location) {
+        alert('Please enter your location');
+        return;
+      }
+      
+      showStep(2);
+    } else if (currentStep === 2) {
+      // Validate step 2
+      const qualification = document.getElementById('qualification').value;
+      
+      if (qualification === 'after10th') {
+        const after10thSelected = document.querySelector('input[name="after10th"]:checked');
+        if (!after10thSelected) {
+          alert('Please select what you would like to do after 10th');
+          return;
+        }
+        
+        if (after10thSelected.value === 'continue') {
+          const streamSelected = document.querySelector('input[name="stream"]:checked');
+          if (!streamSelected) {
+            alert('Please select your stream');
+            return;
+          }
+        }
+      } else if (qualification === 'after12th') {
+        const streamSelected = document.querySelector('input[name="stream"]:checked');
+        if (!streamSelected) {
+          alert('Please select your stream');
+          return;
+        }
+      }
+      
+      const higherStudies = document.getElementById('higherStudies').value;
+      if (!higherStudies) {
+        alert('Please indicate whether you plan to do higher studies');
+        return;
+      }
+      
+      // If higher studies is "No", submit form directly
+      if (higherStudies === 'No') {
+        // Show loading overlay
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          // Wait for display to take effect before adding opacity
+          setTimeout(() => {
+            loadingOverlay.style.opacity = '1';
+            
+            // Animate progress bar
+            const progressBar = loadingOverlay.querySelector('.progress-bar');
+            if (progressBar) {
+              let progress = 0;
+              const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 90) {
+                  clearInterval(progressInterval);
+                  progress = 90; // Cap at 90% until actual completion
+                }
+                progressBar.style.width = progress + '%';
+              }, 700);
+            }
+          }, 10);
+        }
+        
+        // Submit form
+        form.submit();
+        return;
+      }
+      
+      showStep(3);
+    } else if (currentStep === 3) {
+      // Show loading overlay
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      if (loadingOverlay) {
+        loadingOverlay.style.display = 'flex';
+        // Wait for display to take effect before adding opacity
+        setTimeout(() => {
+          loadingOverlay.style.opacity = '1';
+          
+          // Animate progress bar
+          const progressBar = loadingOverlay.querySelector('.progress-bar');
+          if (progressBar) {
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+              progress += Math.random() * 15;
+              if (progress > 90) {
+                clearInterval(progressInterval);
+                progress = 90; // Cap at 90% until actual completion
+              }
+              progressBar.style.width = progress + '%';
+            }, 700);
+          }
+        }, 10);
+      }
+      
+      // Submit form
+      form.submit();
+    }
+  });
+
+  // Handle previous button click
+  prevBtn.addEventListener('click', function() {
+    if (currentStep > 1) {
+      showStep(currentStep - 1);
+    }
+  });
+
+  // Add higherStudies change handler
+  const higherStudiesSelect = document.getElementById('higherStudies');
+  if (higherStudiesSelect) {
+    higherStudiesSelect.addEventListener('change', function() {
+      if (this.value === 'No') {
+        // If "No" is selected, update button to Submit
+        nextBtn.innerHTML = 'Submit <i class="fas fa-arrow-right ms-2"></i>';
+      } else {
+        // Reset button text if "Yes" is selected
+        nextBtn.innerHTML = 'Continue <i class="fas fa-arrow-right ms-2"></i>';
+      }
+    });
+  }
+
+  // Initialize the form
+  initForm();
+}); 

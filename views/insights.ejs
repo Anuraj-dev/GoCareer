@@ -1,69 +1,575 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insights - GoCareer</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&family=Outfit:wght@300;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-          <img src="/logo.png" style="width: 100px; height: 100px" />
-          GoCareer
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-between"
-          id="navbarNavAltMarkup">
-          <div class="navbar-nav mx-auto">
-            <a class="nav-link" href="/explore">Explore</a>
-            <a class="nav-link" href="/about">About Us</a>
-            <a class="nav-link active" href="/insights">Insights</a>
-            <a class="nav-link" href="/help">Help</a>
+<%- include('partials/header', {
+  title: 'Insights'
+}) %>
+
+<%- include('partials/navigation', {
+  path: '/insights'
+}) %>
+
+<div class="container mt-5">
+  <div class="content-container" style="background: rgba(255, 255, 255, 0.95); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 6px 20px rgba(24, 53, 80, 0.08); position: relative; z-index: 1;">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <h1 style="color: #183550; font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem;">Career Insights & Trends</h1>
+        <p style="color: rgba(24, 53, 80, 0.8); font-size: 1.1rem; line-height: 1.6; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 1.5rem;">
+          Stay informed about the latest career trends, job market analysis, and valuable insights to make better career decisions.
+        </p>
+      </div>
+    </div>
+
+    <div class="trends-section mb-5">
+      <h2 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin-bottom: 1.5rem; position: relative; display: inline-block;">
+        Current Industry Trends
+        <span style="position: absolute; bottom: -8px; left: 0; width: 60%; height: 3px; background: #68b0e3;"></span>
+      </h2>
+
+      <div class="row mb-5">
+        <div class="col-lg-8">
+          <div class="chart-container" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.05); height: 400px; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 1rem;">Fastest Growing Career Fields Globally</h3>
+            <div id="growthChart" style="width: 100%; height: 330px;"></div>
           </div>
-          <div class="navbar-nav ms-auto">
-            <form class="d-flex" role="search" action="/search" method="GET">
-              <input
-                class="form-control me-2 search-input"
-                name="q"
-                type="search"
-                placeholder="Search"
-                aria-label="Search" />
-              <button class="btn btn-outline-dark search-btn" type="submit">
-                <i class="bi bi-search"></i>
-              </button>
-            </form>
+        </div>
+        <div class="col-lg-4">
+          <div style="background: linear-gradient(135deg, rgba(24, 53, 80, 0.03) 0%, rgba(104, 176, 227, 0.1) 100%); border-radius: 12px; padding: 1.5rem; height: 100%; border-left: 4px solid #68b0e3;">
+            <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 1rem;">Key Insights 2024</h3>
+            <ul style="padding-left: 1rem; margin-bottom: 0;">
+              <li style="color: rgba(24, 53, 80, 0.8); font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 0.8rem;">AI and Machine Learning roles have seen a 45% growth rate globally in 2024</li>
+              <li style="color: rgba(24, 53, 80, 0.8); font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 0.8rem;">Healthcare sector is projected to add 3.1 million jobs worldwide by 2026</li>
+              <li style="color: rgba(24, 53, 80, 0.8); font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 0.8rem;">Renewable energy employment grew by 32% in emerging markets over the past year</li>
+              <li style="color: rgba(24, 53, 80, 0.8); font-family: 'Plus Jakarta Sans', sans-serif;">Remote work positions now represent 38% of all job listings, up from 25% in 2023</li>
+            </ul>
           </div>
         </div>
       </div>
-    </nav>
 
-    <div class="container mt-5">
-      <h1>Career Insights</h1>
-      <p>Content coming soon</p>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="chart-container" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.05); height: 350px; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 1rem;">Average Global Salary by Education Level</h3>
+            <div id="salaryChart" style="width: 100%; height: 280px;"></div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="chart-container" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.05); height: 350px; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 1rem;">In-Demand Skills for 2024-2025</h3>
+            <div id="skillsChart" style="width: 100%; height: 280px;"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+    <div class="global-insights-section mb-5">
+      <h2 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin-bottom: 1.5rem; position: relative; display: inline-block;">
+        Global Career Insights
+        <span style="position: absolute; bottom: -8px; left: 0; width: 60%; height: 3px; background: #68b0e3;"></span>
+      </h2>
+
+      <div class="row mb-4">
+        <div class="col-12">
+          <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.05); border: 1px solid rgba(104, 176, 227, 0.2); margin-bottom: 2rem;">
+            <div class="row">
+              <div class="col-lg-6">
+                <div id="worldMap" style="width: 100%; height: 400px;"></div>
+              </div>
+              <div class="col-lg-6">
+                <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 1rem;">Global Career Hotspots & Growth Trends</h3>
+                <div class="region-list">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(24, 53, 80, 0.1);">
+                    <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">North America</span>
+                    <div>
+                      <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif;">AI & Cloud Computing</span>
+                      <span style="background: #183550; color: white; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; margin-left: 0.5rem;">+25%</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(24, 53, 80, 0.1);">
+                    <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Europe</span>
+                    <div>
+                      <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif;">Renewable Energy</span>
+                      <span style="background: #183550; color: white; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; margin-left: 0.5rem;">+31%</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(24, 53, 80, 0.1);">
+                    <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Asia-Pacific</span>
+                    <div>
+                      <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif;">E-commerce</span>
+                      <span style="background: #183550; color: white; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; margin-left: 0.5rem;">+34%</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(24, 53, 80, 0.1);">
+                    <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Middle East</span>
+                    <div>
+                      <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif;">Clean Energy</span>
+                      <span style="background: #183550; color: white; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; margin-left: 0.5rem;">+29%</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(24, 53, 80, 0.1);">
+                    <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Latin America</span>
+                    <div>
+                      <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif;">Fintech</span>
+                      <span style="background: #183550; color: white; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; margin-left: 0.5rem;">+26%</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0;">
+                    <span style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-weight: 500;">Africa</span>
+                    <div>
+                      <span style="background: rgba(0, 128, 0, 0.1); color: green; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif;">Mobile Tech</span>
+                      <span style="background: #183550; color: white; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif; margin-left: 0.5rem;">+24%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.05); height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 1rem;">Remote Work Adoption by Region (2024)</h3>
+            <div id="remoteWorkChart" style="width: 100%; height: 280px;"></div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.05); height: 100%; border: 1px solid rgba(104, 176, 227, 0.2);">
+            <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 1rem;">Global Emerging Sectors (2024-2025)</h3>
+            <div id="sectorChart" style="width: 100%; height: 280px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="future-skills-section mb-5">
+      <h2 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin-bottom: 1.5rem; position: relative; display: inline-block;">
+        Future of Work Trends
+        <span style="position: absolute; bottom: -8px; left: 0; width: 60%; height: 3px; background: #68b0e3;"></span>
+      </h2>
+      
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); height: 100%; border: 1px solid rgba(104, 176, 227, 0.2); transition: all 0.3s ease;">
+            <div style="height: 8px; background: linear-gradient(90deg, #183550, #68b0e3);"></div>
+            <div style="padding: 1.5rem;">
+              <div style="background: rgba(104, 176, 227, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                <i class="bi bi-robot" style="font-size: 1.8rem; color: #183550;"></i>
+              </div>
+              <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin-bottom: 0.8rem;">AI Integration</h3>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 1rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif;">
+                By 2026, 82% of enterprises will have integrated AI into their workflows, creating hybrid human-AI roles that focus on value-added tasks requiring human judgment and creativity.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); height: 100%; border: 1px solid rgba(104, 176, 227, 0.2); transition: all 0.3s ease;">
+            <div style="height: 8px; background: linear-gradient(90deg, #183550, #68b0e3);"></div>
+            <div style="padding: 1.5rem;">
+              <div style="background: rgba(104, 176, 227, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                <i class="bi bi-house-gear" style="font-size: 1.8rem; color: #183550;"></i>
+              </div>
+              <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin-bottom: 0.8rem;">Hybrid Work Models</h3>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 1rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif;">
+                71% of high-growth companies have adopted "productivity anywhere" workforce models. Flexible work arrangements are now standard, with emphasis on output over work location.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(24, 53, 80, 0.08); height: 100%; border: 1px solid rgba(104, 176, 227, 0.2); transition: all 0.3s ease;">
+            <div style="height: 8px; background: linear-gradient(90deg, #183550, #68b0e3);"></div>
+            <div style="padding: 1.5rem;">
+              <div style="background: rgba(104, 176, 227, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                <i class="bi bi-mortarboard" style="font-size: 1.8rem; color: #183550;"></i>
+              </div>
+              <h3 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; margin-bottom: 0.8rem;">Continuous Learning</h3>
+              <p style="color: rgba(24, 53, 80, 0.8); font-size: 1rem; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif;">
+                88% of jobs that will exist in 2030 haven't been invented yet. Employers are focusing on skills-based hiring and continuous learning paths over traditional credentials.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subscribe-section text-center" style="background: linear-gradient(135deg, rgba(24, 53, 80, 0.1) 0%, rgba(104, 176, 227, 0.1) 100%); border-radius: 12px; padding: 2rem; margin-top: 3rem;">
+      <h2 style="color: #183550; font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Stay Updated on Career Trends</h2>
+      <p style="color: rgba(24, 53, 80, 0.8); font-size: 1.1rem; font-family: 'Plus Jakarta Sans', sans-serif; max-width: 600px; margin: 0 auto 1.5rem;">
+        Subscribe to receive the latest career insights, job market updates, and expert tips directly in your inbox.
+      </p>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Your email address" style="padding: 0.8rem 1.2rem; border-radius: 8px 0 0 8px; border: 1px solid rgba(24, 53, 80, 0.2); font-family: 'Plus Jakarta Sans', sans-serif;">
+            <button class="btn" style="background: #183550; color: white; border: none; border-radius: 0 8px 8px 0; padding: 0.8rem 1.5rem; font-family: 'Space Grotesk', sans-serif;">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer', {
+  useVanta: false,
+  transparent: true
+}) %>
+
+<!-- Add ApexCharts library for data visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Growth Chart
+    const growthOptions = {
+      series: [{
+        name: 'Growth Rate (%)',
+        data: [45, 37, 32, 30, 28, 24, 20]
+      }],
+      chart: {
+        type: 'bar',
+        height: 300,
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        toolbar: {
+          show: false
+        }
+      },
+      colors: ['#68b0e3'],
+      plotOptions: {
+        bar: {
+          borderRadius: 5,
+          columnWidth: '60%',
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: ['AI & ML', 'Cybersecurity', 'Renewable Energy', 'Healthcare Tech', 'Data Science', 'E-commerce', 'Digital Marketing'],
+        labels: {
+          style: {
+            colors: '#183550',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Annual Growth Rate (%)',
+          style: {
+            color: '#183550',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        },
+        labels: {
+          style: {
+            colors: '#183550',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      grid: {
+        borderColor: 'rgba(24, 53, 80, 0.1)'
+      }
+    };
+    const growthChart = new ApexCharts(document.querySelector("#growthChart"), growthOptions);
+    growthChart.render();
+
+    // Salary Chart - Updated to Global figures and USD
+    const salaryOptions = {
+      series: [{
+        name: 'Average Annual Salary (USD)',
+        data: [28000, 42000, 65000, 92000, 125000]
+      }],
+      chart: {
+        type: 'bar',
+        height: 250,
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        toolbar: {
+          show: false
+        }
+      },
+      colors: ['#183550'],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          borderRadius: 5,
+          barHeight: '60%',
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: ['High School', 'Diploma', 'Bachelors', 'Masters', 'PhD/Professional'],
+        labels: {
+          style: {
+            colors: '#183550',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: '#183550',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      grid: {
+        borderColor: 'rgba(24, 53, 80, 0.1)'
+      }
+    };
+    const salaryChart = new ApexCharts(document.querySelector("#salaryChart"), salaryOptions);
+    salaryChart.render();
+
+    // Skills Chart - Updated with latest in-demand skills
+    const skillsOptions = {
+      series: [90, 85, 82, 78, 75, 72, 70],
+      chart: {
+        type: 'radialBar',
+        height: 250,
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        toolbar: {
+          show: false
+        }
+      },
+      plotOptions: {
+        radialBar: {
+          offsetY: 0,
+          startAngle: 0,
+          endAngle: 270,
+          hollow: {
+            margin: 5,
+            size: '30%',
+            background: 'transparent',
+          },
+          dataLabels: {
+            name: {
+              show: true,
+              fontFamily: "'Space Grotesk', sans-serif",
+              color: '#183550',
+              fontSize: '12px'
+            },
+            value: {
+              show: false
+            }
+          }
+        }
+      },
+      colors: ['#68b0e3', '#183550', '#4ca2d8', '#2b5c80', '#60b7f3', '#379bd1', '#3c7ea8'],
+      labels: ['GenAI & LLMs', 'Data Analytics', 'Cybersecurity', 'Cloud Computing', 'Sustainability', 'Critical Thinking', 'Digital Collaboration'],
+      legend: {
+        show: true,
+        position: 'right',
+        fontFamily: "'Space Grotesk', sans-serif",
+        fontSize: '12px',
+        offsetY: 10,
+        offsetX: -20,
+        labels: {
+          colors: '#183550'
+        }
+      }
+    };
+    const skillsChart = new ApexCharts(document.querySelector("#skillsChart"), skillsOptions);
+    skillsChart.render();
+
+    // Remote Work Chart
+    const remoteWorkOptions = {
+      series: [{
+        name: "Remote Work Adoption (%)",
+        data: [55, 48, 42, 38, 35, 30]
+      }],
+      chart: {
+        type: "bar",
+        height: 280,
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        toolbar: {
+          show: false
+        }
+      },
+      colors: ['#183550'],
+      plotOptions: {
+        bar: {
+          distributed: true,
+          borderRadius: 5,
+          columnWidth: '60%',
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        categories: ["North America", "Europe", "Asia-Pacific", "Latin America", "Middle East", "Africa"],
+        labels: {
+          style: {
+            colors: '#183550',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: '#183550',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      grid: {
+        borderColor: 'rgba(24, 53, 80, 0.1)'
+      }
+    };
+    const remoteWorkChart = new ApexCharts(document.querySelector("#remoteWorkChart"), remoteWorkOptions);
+    remoteWorkChart.render();
+
+    // Sector Chart - Updated with global sectors
+    const sectorOptions = {
+      series: [
+        {
+          name: "Growth Rate (%)",
+          data: [42, 35, 31, 28, 25, 22]
+        }
+      ],
+      chart: {
+        type: "area",
+        height: 280,
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        toolbar: {
+          show: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: "smooth",
+        width: 3
+      },
+      colors: ["#68b0e3"],
+      fill: {
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.3,
+          stops: [0, 90, 100]
+        }
+      },
+      xaxis: {
+        categories: ["Generative AI", "Clean Energy", "Health Tech", "EdTech", "Fintech", "Space Tech"],
+        labels: {
+          style: {
+            colors: "#183550",
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: "Growth Rate (%)",
+          style: {
+            color: "#183550",
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        },
+        labels: {
+          style: {
+            colors: "#183550",
+            fontFamily: "'Space Grotesk', sans-serif"
+          }
+        }
+      },
+      grid: {
+        borderColor: "rgba(24, 53, 80, 0.1)"
+      },
+      markers: {
+        size: 5,
+        hover: {
+          size: 7
+        }
+      }
+    };
+    const sectorChart = new ApexCharts(document.querySelector("#sectorChart"), sectorOptions);
+    sectorChart.render();
+
+    // World Map - Enhanced with a more interactive visualization
+    document.getElementById('worldMap').innerHTML = `
+      <div style="width: 100%; height: 100%; position: relative; background: rgba(104, 176, 227, 0.05); border-radius: 8px; overflow: hidden;">
+        <!-- World Map SVG with simplified regions -->
+        <svg viewBox="0 0 1000 500" style="width: 100%; height: 100%;">
+          <!-- North America -->
+          <path d="M150,120 L200,120 L250,150 L280,200 L250,250 L200,280 L150,250 L120,200 Z" fill="#68b0e3" opacity="0.7" stroke="#183550" stroke-width="1.5"></path>
+          
+          <!-- South America -->
+          <path d="M220,300 L250,320 L280,350 L250,400 L220,420 L190,400 L170,350 Z" fill="#68b0e3" opacity="0.6" stroke="#183550" stroke-width="1.5"></path>
+          
+          <!-- Europe -->
+          <path d="M450,120 L500,100 L550,120 L580,150 L550,180 L500,200 L450,180 L420,150 Z" fill="#68b0e3" opacity="0.8" stroke="#183550" stroke-width="1.5"></path>
+          
+          <!-- Africa -->
+          <path d="M450,230 L500,220 L550,240 L580,280 L550,320 L500,340 L450,320 L420,280 Z" fill="#68b0e3" opacity="0.5" stroke="#183550" stroke-width="1.5"></path>
+          
+          <!-- Asia -->
+          <path d="M600,120 L650,100 L700,120 L750,150 L780,200 L750,250 L700,280 L650,250 L600,220 L580,180 Z" fill="#68b0e3" opacity="0.7" stroke="#183550" stroke-width="1.5"></path>
+          
+          <!-- Australia -->
+          <path d="M800,320 L850,300 L900,320 L920,350 L900,380 L850,400 L800,380 L780,350 Z" fill="#68b0e3" opacity="0.6" stroke="#183550" stroke-width="1.5"></path>
+          
+          <!-- Growth Indicators -->
+          <circle cx="200" cy="180" r="15" fill="#183550" opacity="0.9">
+            <title>North America: +25% in AI & Cloud Computing</title>
+          </circle>
+          
+          <circle cx="220" cy="370" r="12" fill="#183550" opacity="0.8">
+            <title>Latin America: +26% in Fintech</title>
+          </circle>
+          
+          <circle cx="500" cy="150" r="14" fill="#183550" opacity="0.9">
+            <title>Europe: +31% in Renewable Energy</title>
+          </circle>
+          
+          <circle cx="500" cy="280" r="12" fill="#183550" opacity="0.7">
+            <title>Africa: +24% in Mobile Tech</title>
+          </circle>
+          
+          <circle cx="680" cy="180" r="16" fill="#183550" opacity="0.9">
+            <title>Asia-Pacific: +34% in E-commerce</title>
+          </circle>
+          
+          <circle cx="580" cy="200" r="13" fill="#183550" opacity="0.8">
+            <title>Middle East: +29% in Clean Energy</title>
+          </circle>
+          
+          <circle cx="850" cy="350" r="12" fill="#183550" opacity="0.8">
+            <title>Australia: +28% in Green Tech</title>
+          </circle>
+          
+          <!-- Legend -->
+          <text x="50" y="50" font-family="'Space Grotesk', sans-serif" font-size="14" fill="#183550">Global Career Growth Hotspots</text>
+          <circle cx="50" cy="70" r="5" fill="#183550"></circle>
+          <text x="65" y="75" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#183550">Growth Hotspot</text>
+          <rect x="50" y="85" width="15" height="10" fill="#68b0e3" opacity="0.7"></rect>
+          <text x="75" y="95" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#183550">Region</text>
+        </svg>
+      </div>
+    `;
+    
+    // Add hover effect to insight cards
+    const insightCards = document.querySelectorAll('.col-lg-4 > div');
+    insightCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 8px 20px rgba(24, 53, 80, 0.12)';
+      });
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 15px rgba(24, 53, 80, 0.08)';
+      });
+    });
+  });
+</script>

@@ -1,71 +1,51 @@
 const express = require("express");
 const router = express.Router();
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-require("dotenv").config();
-
-// Initialize Gemini API
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-
-// Configure Gemini 2.0 Flash model
-async function getGeminiModel() {
-  return genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
-  });
-}
+const { getCareerRecommendationsFromAI } = require("../services/aiService");
+const logger = require("../middleware/logger");
+const cacheMiddleware = require("../middleware/cache");
+const { validateRecommendationRequest, validate } = require("../middleware/validation");
+const { apiLimiter } = require("../middleware/rateLimit");
 
 // API route for career recommendations
-router.post("/recommendations", async (req, res) => {
-  const userData = req.body;
-
-  try {
-    const model = await getGeminiModel();
-
-    const promptText = `You are a career counseling expert. Provide 6 suitable career paths for a student in rural India.
-Student Profile:
-- Qualification: ${userData.qualification}
-${userData.qualification === "Class 12" ? `- Stream: ${userData.stream}` : ""}
-${
-  userData.qualification === "Class 12" && userData.subjects
-    ? `- Subjects: ${userData.subjects}`
-    : ""
-}
-${userData.higherStudies ? `- Higher Studies: ${userData.higherStudies}` : ""}
-- Age: ${userData.age}
-- Location: ${userData.location}
-
-Output JSON array with 6 objects, each with: title, description (2-3 sentences), requirements, skills (3-5), salary_range (INR monthly), salary_min (number), salary_max (number), path_type ('higher_education' or 'immediate'). Prioritize local/remote jobs. If higher studies is 'Yes', suggest 'higher_education' paths, otherwise 'immediate' paths.`;
-
-    const result = await model.generateContent(promptText);
-    const response = await result.response;
-    const text = await response.text();
+router.post("/recommendations",
+  apiLimiter,
+  validateRecommendationRequest,
+  validate,
+  cacheMiddleware,
+  async (req, res) => {
+    const userData = req.body;
+    const requestId = req.headers['x-request-id'] || `api-${Date.now().toString()}`;
 
     try {
-      let cleanedText = text;
-      if (cleanedText.startsWith("```json")) {
-        cleanedText = cleanedText.substring(7);
-      }
-      if (cleanedText.endsWith("```")) {
-        cleanedText = cleanedText.substring(0, cleanedText.length - 3);
-      }
-      cleanedText = cleanedText.trim();
+      const recommendations = await getCareerRecommendationsFromAI(userData, requestId);
 
-      const jsonData = JSON.parse(cleanedText);
-      res.json({ success: true, careers: jsonData });
-    } catch (jsonError) {
-      console.error("Failed to parse AI response as JSON:", jsonError);
-      res
-        .status(500)
-        .json({ success: false, error: "Failed to parse AI response" });
+      if (recommendations && recommendations.length > 0) {
+        logger.info(`[API /recommendations] Successfully generated recommendations for request ${requestId}`);
+        res.json({ success: true, careers: recommendations, requestId });
+      } else if (recommendations) {
+        logger.info(`[API /recommendations] AI returned no recommendations for request ${requestId}`);
+        res.json({ success: true, careers: [], requestId, message: "No specific recommendations found based on the provided criteria." });
+      } else {
+        logger.error(`[API /recommendations] AI service failed to return recommendations for request ${requestId}`);
+        res.status(500).json({
+          success: false,
+          error: "Failed to get career recommendations from AI service after multiple attempts.",
+          requestId,
+        });
+      }
+    } catch (error) {
+      logger.error(`[API /recommendations] Unexpected error for request ${requestId}: ${error.message}`, { stack: error.stack });
+      res.status(500).json({
+        success: false,
+        error: "An unexpected error occurred while fetching career recommendations.",
+        requestId,
+      });
     }
-  } catch (error) {
-    console.error("AI recommendation error:", error);
-    res.status(500).json({ success: false, error: "AI service error" });
-  }
-});
+  });
 
 // Simple health check endpoint
-router.get("/health", (req, res) => {
-  res.json({ status: "ok" });
+router.get("/health", apiLimiter, (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
 module.exports = router;

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; }
+        .error-container { max-width: 600px; margin: 50px auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; }
+        h1 { color: #d9534f; }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>An Error Occurred</h1>
+        <p><% if (typeof message !== 'undefined' && message) { %><%- message %><% } else { %>Sorry, something went wrong.<% } %></p>
+        <% if (typeof error !== 'undefined' && error && Object.keys(error).length > 0 && process.env.NODE_ENV === 'development') { %>
+            <pre style="text-align: left; background-color: #eee; padding: 10px; border-radius: 3px; white-space: pre-wrap; word-wrap: break-word;"><%- JSON.stringify(error, null, 2) %></pre>
+        <% } %>
+        <p><a href="/">Go to Homepage</a></p>
+        <p><a href="/assessment">Try Assessment Again</a></p>
+    </div>
+</body>
+</html> 

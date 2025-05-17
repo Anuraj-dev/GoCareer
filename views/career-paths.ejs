@@ -1,255 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Career Recommendations - Go Career</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Options - GoCareer</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&family=Outfit:wght@300;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-      }
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            background: url('/images/background.jpeg') center/cover no-repeat fixed;
+            min-height: 100vh;
+            position: relative;
+            padding-top: 80px;
+        }
 
-      header {
-        background: linear-gradient(135deg, #1e88e5, #0d47a1);
-        color: white;
-        text-align: center;
-        padding: 1.5rem 0;
-      }
+        /* Add an overlay to ensure text readability */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: 0;
+        }
 
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2rem;
-      }
+        /* Ensure content appears above the overlay */
+        .navbar, .container {
+            position: relative;
+            z-index: 1;
+        }
 
-      h1 {
-        font-size: 2.2rem;
-        margin-bottom: 0.5rem;
-      }
+        /* Container margin adjustment */
+        .container {
+            padding-top: 0.5rem;
+        }
 
-      .user-summary {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-      }
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            font-family: "Space Grotesk", sans-serif;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            margin-bottom: 0;
+            box-shadow: 0 2px 10px rgba(24, 53, 80, 0.1);
+            transition: all 0.3s ease;
+        }
 
-      .user-summary h2 {
-        color: #1e88e5;
-        border-bottom: 2px solid #f0f0f0;
-        padding-bottom: 0.5rem;
-        margin-top: 0;
-      }
+        .navbar.scrolled {
+            padding: 0.3rem 0;
+            box-shadow: 0 2px 15px rgba(24, 53, 80, 0.15);
+        }
 
-      .user-detail {
-        display: flex;
-        margin-bottom: 0.5rem;
-      }
+        .navbar-nav.mx-auto {
+            gap: 1rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s ease;
+        }
 
-      .user-detail strong {
-        min-width: 120px;
-      }
+        .navbar-brand {
+            font-family: "Space Grotesk", monospace;
+            font-weight: 700;
+            font-size: 2.4rem;
+            letter-spacing: -1px;
+            color: #183550;
+            transition: all 0.3s ease;
+        }
 
-      .career-card {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        transition: transform 0.3s ease;
-      }
+        .navbar.scrolled .navbar-brand {
+            font-size: 2rem;
+        }
 
-      .career-card:hover {
-        transform: translateY(-5px);
-      }
+        /* Search Styles */
+        .search-input {
+            min-width: 200px;
+            padding: 0.6rem 1rem;
+            background: #ffffff;
+            border: 1px solid rgba(24, 53, 80, 0.3);
+            border-radius: 8px;
+            color: #000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(24, 53, 80, 0.15);
+        }
 
-      .career-card h2 {
-        color: #1e88e5;
-        margin-top: 0;
-      }
+        .search-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
 
-      .skill-tag {
-        display: inline-block;
-        background-color: #e3f2fd;
-        color: #1976d2;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        margin-right: 0.5rem;
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
-      }
+        .search-input:focus {
+            background: #ffffff;
+            border-color: rgba(24, 53, 80, 0.5);
+            box-shadow: 0 2px 8px rgba(24, 53, 80, 0.25);
+            outline: none;
+        }
 
-      .info-section {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #eee;
-      }
+        .search-btn {
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(24, 53, 80, 0.2);
+            color: #183550;
+        }
 
-      .info-section h3 {
-        margin-top: 0;
-        color: #555;
-      }
+        .search-btn:hover {
+            background: rgba(24, 53, 80, 0.05);
+            border-color: #183550;
+        }
 
-      .source-info {
-        background-color: #fff3e0;
-        border-left: 4px solid #ff9800;
-        padding: 0.8rem;
-        margin-bottom: 2rem;
-      }
+        .nav-link {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+            position: relative;
+            padding: 0.5rem 1.8rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0.75;
+        }
 
-      .nav-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 2rem;
-      }
+        .navbar.scrolled .nav-link {
+            padding: 0.4rem 1.5rem;
+            font-size: 1rem;
+        }
 
-      .btn {
-        display: inline-block;
-        background-color: #ff6f00;
-        color: white;
-        border: none;
-        padding: 0.8rem 1.8rem;
-        font-size: 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        font-weight: 600;
-      }
+        .nav-link:hover {
+            opacity: 1;
+        }
 
-      .btn:hover {
-        background-color: #ff8f00;
-      }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: #68b0e3;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
 
-      .nav-link {
-        color: #1e88e5;
-        text-decoration: none;
-      }
+        .nav-link:hover::after {
+            width: 70%;
+        }
 
-      .nav-link:hover {
-        text-decoration: underline;
-      }
+        .source-info {
+            background: rgba(104, 176, 227, 0.15);
+            border-left: 4px solid #68b0e3;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0 1rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(24, 53, 80, 0.1);
+            font-size: 0.9rem;
+            width: fit-content;
+            margin-left: auto;
+            color: #183550;
+            font-weight: 500;
+        }
 
-      footer {
-        background-color: #263238;
-        color: white;
-        text-align: center;
-        padding: 1.5rem 0;
-        margin-top: 3rem;
-      }
+        .source-info span::before {
+            content: "AI Powered: ";
+            font-weight: 600;
+            color: #68b0e3;
+        }
+
+        .user-summary {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(24, 53, 80, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(24, 53, 80, 0.1);
+        }
+
+        .user-summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .user-summary-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .user-summary.expanded .user-summary-content {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .user-summary.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .user-summary h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #183550;
+            margin-bottom: 1rem;
+        }
+
+        .user-detail {
+            margin-bottom: 0.5rem;
+            color: rgba(24, 53, 80, 0.8);
+        }
+
+        .user-detail strong {
+            color: #183550;
+        }
+
+        .career-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            border: 1px solid rgba(24, 53, 80, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(24, 53, 80, 0.1);
+        }
+
+        .career-card-header {
+            background: #183550;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .career-card-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin: 0;
+            color: white;
+        }
+
+        .career-card-body {
+            padding: 1.5rem;
+        }
+
+        .career-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(24, 53, 80, 0.05);
+            border-top: 1px solid rgba(24, 53, 80, 0.1);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .career-match {
+            display: flex;
+            align-items: center;
+        }
+
+        .match-label {
+            font-size: 1rem;
+            color: #183550;
+            margin-right: 0.5rem;
+        }
+
+        .match-value {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #68b0e3;
+        }
+
+        .explore-btn {
+            background: #68b0e3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .explore-btn:hover {
+            background: #183550;
+            transform: translateY(-2px);
+        }
+
+        .career-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(104, 176, 227, 0.1);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #183550;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(24, 53, 80, 0.7);
+            margin-top: 0.25rem;
+        }
+
+        .career-details h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.1rem;
+            color: #183550;
+            margin-bottom: 0.75rem;
+        }
+
+        .career-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+
+        .career-details li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(24, 53, 80, 0.8);
+        }
+
+        .career-details li::before {
+            content: "•";
+            color: #68b0e3;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .skill-tag {
+            background: rgba(104, 176, 227, 0.1);
+            color: #183550;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 0 0.5rem 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+        }
+
+        .btn {
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 0.8rem 2rem;
+            background: #183550;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #68b0e3;
+            transform: translateY(-2px);
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .career-card:nth-child(1) { animation-delay: 0.1s; }
+        .career-card:nth-child(2) { animation-delay: 0.2s; }
+        .career-card:nth-child(3) { animation-delay: 0.3s; }
+        .career-card:nth-child(4) { animation-delay: 0.4s; }
+        .career-card:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Loading styles */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #183550;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(24, 53, 80, 0.1);
+            border-top-color: #183550;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .results-header {
+            text-align: center;
+            margin: 1.2rem 0 2rem;
+        }
+
+        .results-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            color: #183550;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-header p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: rgba(24, 53, 80, 0.8);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Your Career Recommendations</h1>
-      <p>Based on your profile and interests</p>
-    </header>
+    <%- include('partials/header', {
+      title: 'Career Options'
+    }) %>
+
+    <%- include('partials/navigation', {
+      path: '/career-paths'
+    }) %>
 
     <div class="container">
-      <div class="source-info">
-        <strong>Recommendation Source:</strong> <%= recommendationSource %>
+      <div class="results-header">
+        <h1>Your Career Recommendations</h1>
+        <p>Based on your unique profile and interests, we've curated these career paths just for you.</p>
+        <div class="source-info">
+          <span><%= recommendationSource %></span>
+        </div>
       </div>
 
-      <div class="user-summary">
-        <h2>Your Profile</h2>
-        <div class="user-detail">
-          <strong>Qualification:</strong>
-          <span><%= userData.qualification %></span>
+      <div class="user-summary" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 247, 255, 0.95) 100%); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 6px 20px rgba(24, 53, 80, 0.08); border: 1px solid rgba(104, 176, 227, 0.2);">
+        <div class="user-summary-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-bottom: 1px dashed rgba(104, 176, 227, 0.3); padding-bottom: 0.8rem; margin-bottom: 0.5rem;">
+          <h2 style="margin-bottom: 0; color: #183550; font-size: 1.5rem; font-weight: 600; display: flex; align-items: center;">
+            <i class="bi bi-person-badge" style="margin-right: 10px; color: #68b0e3; font-size: 1.6rem;"></i>
+            Your Profile
+          </h2>
+          <span class="toggle-btn" style="background: rgba(104, 176, 227, 0.15); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+            <i class="bi bi-chevron-down toggle-icon" style="color: #183550; transition: transform 0.3s ease;"></i>
+          </span>
         </div>
-        <div class="user-detail">
-          <strong>Higher Studies:</strong>
-          <span><%= userData.higherStudies %></span>
-        </div>
-        <% if (userData.stream) { %>
-        <div class="user-detail">
-          <strong>Stream:</strong> <span><%= userData.stream %></span>
-        </div>
-        <% } %> <% if (userData.subjects) { %>
-        <div class="user-detail">
-          <strong>Subjects:</strong> <span><%= userData.subjects %></span>
-        </div>
-        <% } %>
-        <div class="user-detail">
-          <strong>Age:</strong> <span><%= userData.age %></span>
-        </div>
-        <div class="user-detail">
-          <strong>Location:</strong> <span><%= userData.location %></span>
-        </div>
-        <% if (userData.incomeLevel) { %>
-        <div class="user-detail">
-          <strong>Income Level:</strong>
-          <span><%= userData.incomeLevel %></span>
-        </div>
-        <% } %>
-      </div>
-
-      <h2>Recommended Career Paths</h2>
-
-      <% if (careerPaths && careerPaths.length > 0) { %> <%
-      careerPaths.forEach(career => { %>
-      <div class="career-card">
-        <h2><%= career.title %></h2>
-        <p><%= career.description %></p>
-
-        <div class="info-section">
-          <h3>Skills Required</h3>
-          <div>
-            <% career.skills.forEach(skill => { %>
-            <span class="skill-tag"><%= skill %></span>
-            <% }); %>
+        <div class="user-summary-content" style="padding-top: 0.5rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Qualification:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.qualification %></span>
+            </div>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Higher Studies:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.higherStudies %></span>
+            </div>
+            <% if (userData.stream) { %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Stream:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.stream %></span>
+            </div>
+            <% } %> 
+            <% if (userData.subjects) { %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Subjects:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.subjects %></span>
+            </div>
+            <% } %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Age:</strong>
+              <span style="color: #183550; font-size: 1.1rem;"><%= userData.age %></span>
+            </div>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Location:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.location %></span>
+            </div>
+            <% if (userData.incomeLevel) { %>
+            <div class="user-detail" style="background: rgba(255, 255, 255, 0.7); padding: 12px; border-radius: 10px; border-left: 3px solid #68b0e3; transition: all 0.2s ease;">
+              <strong style="color: #183550; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Income Level:</strong>
+              <span style="color: #183550; font-size: 1.1rem; text-transform: capitalize;"><%= userData.incomeLevel %></span>
+            </div>
+            <% } %>
           </div>
         </div>
-
-        <div class="info-section">
-          <h3>Requirements</h3>
-          <p><%= career.requirements %></p>
-        </div>
-        <div class="info-section">
-          <h3>Salary Range</h3>
-          <p><%= career.salary_range %></p>
-        </div>
-
-        <% if (career.local_relevance) { %>
-        <div class="info-section">
-          <h3>Local Relevance</h3>
-          <p><%= career.local_relevance %></p>
-        </div>
-        <% } %> <% if (career.path_type) { %>
-        <div class="info-section">
-          <h3>Path Type</h3>
-          <p>
-            <% if (career.path_type === "immediate") { %> Immediate Entry <% }
-            else { %> Higher Education Required <% } %>
-          </p>
-        </div>
-        <% } %>
       </div>
-      <% }); %> <% } else { %>
-      <div class="career-card">
-        <h2>No career paths found</h2>
-        <p>
-          We couldn't find any career recommendations matching your profile.
-          Please try again with different information.
-        </p>
+
+      <% if (careerPaths && careerPaths.length > 0) { %>
+      <div id="careerResults">
+        <% careerPaths.forEach((career, index) => { %>
+        <div class="career-card">
+          <div class="career-card-header">
+            <h2><%= career.title %></h2>
+          </div>
+          <div class="career-card-body">
+            <div class="career-stats">
+              <div class="stat-item">
+                <div class="stat-value"><%= career.salary_range %></div>
+                <div class="stat-label">Salary Range</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value"><%= career.path_type === "immediate" ? "Immediate" : "4-5 years" %></div>
+                <div class="stat-label">Duration</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">High</div>
+                <div class="stat-label">Growth</div>
+              </div>
+            </div>
+
+            <div class="career-details">
+              <h3>About This Career</h3>
+              <p><%= career.description %></p>
+
+              <h3>Required Skills</h3>
+              <div class="skills-container">
+                <% career.skills.forEach(skill => { %>
+                <span class="skill-tag"><%= skill %></span>
+                <% }); %>
+              </div>
+
+              <h3>Requirements</h3>
+              <ul>
+                <% if (Array.isArray(career.requirements)) { %>
+                  <% career.requirements.forEach(req => { %>
+                    <li><%= req %></li>
+                  <% }); %>
+                <% } else { %>
+                  <li><%= career.requirements %></li>
+                <% } %>
+              </ul>
+
+              <% if (career.local_relevance) { %>
+              <h3>Local Relevance</h3>
+              <p><%= career.local_relevance %></p>
+              <% } %>
+            </div>
+          </div>
+          <div class="career-card-footer">
+            <button class="explore-btn">Explore More</button>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <% } else { %>
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>Loading your personalized career recommendations...</p>
+      </div>
+      <div class="career-card" style="display: none;">
+        <div class="career-card-header">
+          <h2>No Career Paths Found</h2>
+        </div>
+        <div class="career-card-body">
+          <p>We couldn't find any career recommendations matching your profile. Please try again with different information.</p>
+        </div>
       </div>
       <% } %>
 
       <div class="nav-buttons">
-        <a href="/assessment" class="nav-link">← Take Test Again</a>
-        <a href="/" class="btn">Back to Home</a>
+        <button onclick="window.location.href='/assessment'" class="nav-link" style="background: transparent; color: #183550; border: 2px solid #183550; border-radius: 8px; opacity: 1;">← Take Test Again</button>
+        <button onclick="window.location.href='/'" class="btn" style="background: #183550; color: white; padding: 0.8rem 2rem;">Back to Home</button>
       </div>
     </div>
 
-    <footer>
-      <p>
-        Go Career - Empowering rural students with career guidance since 2025
-      </p>
-    </footer>
+    <%- include('partials/footer', {
+      useVanta: false,
+      transparent: true
+    }) %>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Hide loading spinner if we have career paths
+        const careerResults = document.getElementById('careerResults');
+        const loadingElement = document.querySelector('.loading');
+        if (careerResults) {
+          if (loadingElement) {
+            loadingElement.style.display = 'none';
+          }
+        } else if (loadingElement) {
+          // Show no results card after loading animation
+          setTimeout(() => {
+            loadingElement.style.display = 'none';
+            const noResultsCard = document.querySelector('.career-card');
+            if (noResultsCard) {
+              noResultsCard.style.display = 'block';
+            }
+          }, 1500);
+        }
+
+        // Profile accordion functionality
+        const userSummary = document.querySelector('.user-summary');
+        const userSummaryHeader = document.querySelector('.user-summary-header');
+        
+        userSummaryHeader.addEventListener('click', function() {
+          userSummary.classList.toggle('expanded');
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+        
+        // Check initial scroll position
+        if (window.scrollY > 10) {
+          navbar.classList.add('scrolled');
+        }
+      });
+    </script>
   </body>
 </html>

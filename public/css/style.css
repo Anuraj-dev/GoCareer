@@ -2,12 +2,32 @@ body {
   font-family: "DM Sans", sans-serif;
   min-height: 100vh;
   background-color: #f0f8ff;
+  display: flex;
+  flex-direction: column;
 }
+
+/* Container margin adjustment */
+.container {
+  padding-top: 0.5rem;
+}
+
+.container.mt-5 {
+  margin-top: 2rem !important;
+}
+
+/* Main content wrapper to push footer down */
+.content-wrapper {
+  flex: 1 0 auto;
+}
+
+/* Navbar Styles */
 .navbar {
   background: transparent;
   font-family: "Space Grotesk", sans-serif;
   position: relative;
   z-index: 1;
+  padding: 0.3rem 0;
+  margin-bottom: 0;
 }
 .navbar-brand {
   font-family: "Space Mono", monospace;
@@ -90,7 +110,7 @@ button {
   letter-spacing: -0.2px;
 }
 .hero-section {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 .navbar-nav.mx-auto {
   gap: 1rem;
@@ -117,7 +137,13 @@ button {
 }
 .search-btn {
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(104, 176, 227, 0.3);
+  color: #68b0e3;
+}
+.search-btn:hover {
+  background: rgba(104, 176, 227, 0.1);
+  border-color: #68b0e3;
+  color: #68b0e3;
 }
 .hero-btn {
   font-family: "Space Grotesk", sans-serif;
@@ -162,4 +188,205 @@ button {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Footer Styles */
+footer {
+  padding: 0.8rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-top: 0.8rem;
+  flex-shrink: 0;
+  border-radius: 12px 12px 0 0;
+}
+
+.footer-solid {
+  background: rgba(24, 53, 80, 0.95);
+  color: white;
+}
+
+.footer-transparent {
+  background: rgba(24, 53, 80, 0.1);
+  color: #183550;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(24, 53, 80, 0.15);
+  border-radius: 16px 16px 0 0;
+}
+
+.footer-transparent p {
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #183550;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin: 0 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.footer-solid .social-link {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(24, 53, 80, 0.15);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Glass Morphism Styles */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(24, 53, 80, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(24, 53, 80, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 32px rgba(24, 53, 80, 0.15);
+  transform: translateY(-5px);
+}
+
+.glass-navbar {
+  background: rgba(104, 176, 227, 0.08) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(104, 176, 227, 0.15);
+  box-shadow: 0 4px 30px rgba(104, 176, 227, 0.08);
+}
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(24, 53, 80, 0.08);
+}
+
+.glass-input {
+  background: #ffffff;
+  border: 1px solid rgba(24, 53, 80, 0.3);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  color: #183550;
+  box-shadow: 0 2px 4px rgba(24, 53, 80, 0.15);
+}
+
+.glass-input::placeholder {
+  color: rgba(24, 53, 80, 0.5);
+}
+
+.glass-btn {
+  background: rgba(104, 176, 227, 0.08);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(104, 176, 227, 0.3);
+  color: #68b0e3;
+}
+
+.glass-btn:hover {
+  background: rgba(104, 176, 227, 0.15);
+  border-color: #68b0e3;
+  color: #68b0e3;
+}
+
+/* Specific background styles for non-home pages */
+body:not(#vanta-bg) {
+  background: url('/images/background.jpeg') center/cover no-repeat fixed;
+}
+
+.content-container {
+  background: white;
+  border: 1px solid rgba(24, 53, 80, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(24, 53, 80, 0.08);
+}
+
+/* Form validation styles */
+.form-control:valid:focus,
+.form-select:valid:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.form-control:invalid:focus,
+.form-select:invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #dc3545;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: #198754;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* Dark Search Button Style */
+.dark-search-btn {
+  background-color: #183550;
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark-search-btn:hover {
+  background-color: #234968;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
