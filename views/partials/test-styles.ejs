@@ -45,7 +45,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.85); /* semi-transparent white overlay */
+  background: rgba(255, 255, 255, 0.75); /* semi-transparent white overlay */
   z-index: 0;
 }
 
@@ -61,7 +61,8 @@ body::before {
   font-family: "Space Grotesk", sans-serif;
   position: relative;
   z-index: 1;
-  padding: 1.2rem 0;
+  padding: 0.3rem 0;
+  margin-bottom: 0;
 }
 
 .navbar-nav.mx-auto {
@@ -118,7 +119,7 @@ body::before {
 /* Card Styles */
 .card {
   background: white;
-  border: none;
+  border: 1px solid rgba(24, 53, 80, 0.1);
   border-radius: 12px;
   width: 42rem;
   max-width: 95%;
@@ -128,7 +129,7 @@ body::before {
 .card-header {
   border-top-left-radius: 12px !important;
   border-top-right-radius: 12px !important;
-  background: rgba(24, 53, 80, 0.95) !important;
+  background: #183550 !important;
   padding: 1.5rem;
 }
 
@@ -141,18 +142,19 @@ body::before {
   padding: 0.8rem 1rem;
   border-radius: 8px;
   border: 1px solid rgba(24, 53, 80, 0.1);
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
   transition: all 0.3s ease;
+  color: #183550;
 }
 
 .form-control:focus, .form-select:focus {
   background: white;
-  border-color: rgba(24, 53, 80, 0.2);
-  box-shadow: 0 0 0 3px rgba(24, 53, 80, 0.1);
+  border-color: rgba(24, 53, 80, 0.3);
+  box-shadow: 0 0 0 3px rgba(104, 176, 227, 0.2);
 }
 
 .form-check {
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
   border: 1px solid rgba(24, 53, 80, 0.1);
   border-radius: 8px;
   padding: 1rem;
@@ -161,7 +163,7 @@ body::before {
 }
 
 .form-check:hover {
-  background: rgba(255, 255, 255, 1);
+  background: white;
   border-color: rgba(24, 53, 80, 0.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }

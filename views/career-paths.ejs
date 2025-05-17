@@ -35,13 +35,19 @@
             z-index: 1;
         }
 
+        /* Container margin adjustment */
+        .container {
+            padding-top: 0.5rem;
+        }
+
         /* Navbar Styles */
         .navbar {
             background: transparent;
             font-family: "Space Grotesk", sans-serif;
             position: relative;
             z-index: 1;
-            padding: 1.2rem 0;
+            padding: 0.3rem 0;
+            margin-bottom: 0;
         }
 
         .navbar-nav.mx-auto {
@@ -123,20 +129,59 @@
         }
 
         .source-info {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(104, 176, 227, 0.15);
             border-left: 4px solid #68b0e3;
-            padding: 1rem;
-            margin: 2rem 0;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0 1rem;
             border-radius: 0 8px 8px 0;
             box-shadow: 0 2px 4px rgba(24, 53, 80, 0.1);
+            font-size: 0.9rem;
+            width: fit-content;
+            margin-left: auto;
+            color: #183550;
+            font-weight: 500;
+        }
+
+        .source-info span::before {
+            content: "AI Powered: ";
+            font-weight: 600;
+            color: #68b0e3;
         }
 
         .user-summary {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 4px 6px rgba(24, 53, 80, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(24, 53, 80, 0.1);
+        }
+
+        .user-summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .user-summary-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .user-summary.expanded .user-summary-content {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .user-summary.expanded .toggle-icon {
+            transform: rotate(180deg);
         }
 
         .user-summary h2 {
@@ -277,16 +322,6 @@
             transform: translateY(-2px);
         }
 
-        footer {
-            background: rgba(24, 53, 80, 0.95);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
         @keyframes slideIn {
             to {
                 opacity: 1;
@@ -325,14 +360,14 @@
 
         .results-header {
             text-align: center;
-            margin: 2rem 0 3rem;
+            margin: 1.2rem 0 2rem;
         }
 
         .results-header h1 {
             font-family: 'Outfit', sans-serif;
             font-size: 2.5rem;
             color: #183550;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .results-header p {
@@ -345,81 +380,59 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-          <img src="/images/logo.png" style="width: 100px; height: 100px" alt="GoCareer Logo"/>
-          GoCareer
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-          <div class="navbar-nav mx-auto">
-            <a class="nav-link" href="/explore">Explore</a>
-            <a class="nav-link" href="/about">About Us</a>
-            <a class="nav-link" href="/insights">Insights</a>
-            <a class="nav-link" href="/help">Help</a>
-          </div>
-          <div class="navbar-nav ms-auto">
-            <form class="d-flex" role="search" action="/search" method="GET">
-              <input
-                class="form-control me-2 search-input"
-                name="q"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"/>
-              <button class="btn btn-outline-dark search-btn" type="submit">
-                <i class="bi bi-search"></i>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <%- include('partials/header', {
+      title: 'Career Options'
+    }) %>
+
+    <%- include('partials/navigation', {
+      path: '/career-paths'
+    }) %>
 
     <div class="container">
       <div class="results-header">
         <h1>Your Career Recommendations</h1>
         <p>Based on your unique profile and interests, we've curated these career paths just for you.</p>
-      </div>
-
-      <div class="source-info">
-        <strong>Recommendation Source:</strong> <%= recommendationSource %>
+        <div class="source-info">
+          <span><%= recommendationSource %></span>
+        </div>
       </div>
 
       <div class="user-summary">
-        <h2>Your Profile</h2>
-        <div class="user-detail">
-          <strong>Qualification:</strong>
-          <span><%= userData.qualification %></span>
+        <div class="user-summary-header">
+          <h2 style="margin-bottom: 0;">Your Profile</h2>
+          <i class="bi bi-chevron-down toggle-icon"></i>
         </div>
-        <div class="user-detail">
-          <strong>Higher Studies:</strong>
-          <span><%= userData.higherStudies %></span>
+        <div class="user-summary-content">
+          <div class="user-detail">
+            <strong>Qualification:</strong>
+            <span><%= userData.qualification %></span>
+          </div>
+          <div class="user-detail">
+            <strong>Higher Studies:</strong>
+            <span><%= userData.higherStudies %></span>
+          </div>
+          <% if (userData.stream) { %>
+          <div class="user-detail">
+            <strong>Stream:</strong> <span><%= userData.stream %></span>
+          </div>
+          <% } %> <% if (userData.subjects) { %>
+          <div class="user-detail">
+            <strong>Subjects:</strong> <span><%= userData.subjects %></span>
+          </div>
+          <% } %>
+          <div class="user-detail">
+            <strong>Age:</strong> <span><%= userData.age %></span>
+          </div>
+          <div class="user-detail">
+            <strong>Location:</strong> <span><%= userData.location %></span>
+          </div>
+          <% if (userData.incomeLevel) { %>
+          <div class="user-detail">
+            <strong>Income Level:</strong>
+            <span><%= userData.incomeLevel %></span>
+          </div>
+          <% } %>
         </div>
-        <% if (userData.stream) { %>
-        <div class="user-detail">
-          <strong>Stream:</strong> <span><%= userData.stream %></span>
-        </div>
-        <% } %> <% if (userData.subjects) { %>
-        <div class="user-detail">
-          <strong>Subjects:</strong> <span><%= userData.subjects %></span>
-        </div>
-        <% } %>
-        <div class="user-detail">
-          <strong>Age:</strong> <span><%= userData.age %></span>
-        </div>
-        <div class="user-detail">
-          <strong>Location:</strong> <span><%= userData.location %></span>
-        </div>
-        <% if (userData.incomeLevel) { %>
-        <div class="user-detail">
-          <strong>Income Level:</strong>
-          <span><%= userData.incomeLevel %></span>
-        </div>
-        <% } %>
       </div>
 
       <% if (careerPaths && careerPaths.length > 0) { %>
@@ -506,13 +519,13 @@
       </div>
     </div>
 
-    <footer>
-      <p>
-        Go Career - Empowering rural students with career guidance since 2025
-      </p>
-    </footer>
+    <%- include('partials/footer', {
+      useVanta: false,
+      transparent: true
+    }) %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/career-paths.css">
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Hide loading spinner if we have career paths
@@ -532,6 +545,14 @@
             }
           }, 1500);
         }
+
+        // Profile accordion functionality
+        const userSummary = document.querySelector('.user-summary');
+        const userSummaryHeader = document.querySelector('.user-summary-header');
+        
+        userSummaryHeader.addEventListener('click', function() {
+          userSummary.classList.toggle('expanded');
+        });
       });
     </script>
   </body>

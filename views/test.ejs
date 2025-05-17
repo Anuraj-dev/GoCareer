@@ -8,7 +8,7 @@
 }) %>
 
 <div class="container d-flex justify-content-center py-5">
-  <div class="card">
+  <div class="card glass-card">
     <div class="card-header text-light">
       <h4 class="mb-1">Career Path Assessment</h4>
       <small class="text-light opacity-75">Let's discover your educational journey</small>
@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <form id="careerForm" action="/test" method="POST">
+      <form id="careerForm" action="/test" method="POST" class="needs-validation" novalidate>
         <!-- Step 1: Basic Info -->
         <div class="step active" id="step1">
           <div class="form-group mb-4">
@@ -37,16 +37,19 @@
               <option value="after10th">Class 10</option>
               <option value="after12th">Class 12</option>
             </select>
+            <div class="invalid-feedback">Please select your qualification.</div>
           </div>
 
           <div class="form-group mb-4">
             <label for="age" class="form-label">Age</label>
             <input type="number" name="age" id="age" class="form-control" min="14" max="25" placeholder="Enter your age" required>
+            <div class="invalid-feedback">Please enter a valid age between 14 and 25.</div>
           </div>
 
           <div class="form-group mb-4">
             <label for="location" class="form-label">Location</label>
             <input type="text" name="location" id="location" class="form-control" placeholder="Enter your city/village" required>
+            <div class="invalid-feedback">Please enter your location.</div>
           </div>
         </div>
 
@@ -174,5 +177,29 @@
 
 <%- include('partials/footer', {
   useVanta: false,
-  customScripts: include('partials/test-scripts')
+  customScripts: `
+    ${include('partials/test-scripts')}
+    
+    // Form validation
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation');
+        
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+          .forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+      }, false);
+    })();
+  `,
+  transparent: true
 }) %>

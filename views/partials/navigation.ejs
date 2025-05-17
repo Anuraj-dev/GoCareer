@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg <%= path !== '/' ? 'glass-navbar' : '' %>">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-      <img src="/images/logo.png" style="width: 100px; height: 100px" alt="GoCareer Logo" />
+      <img src="/images/logo.png" style="width: 80px; height: 80px" alt="GoCareer Logo" />
       GoCareer
     </a>
     <button
@@ -26,12 +26,12 @@
       <div class="navbar-nav ms-auto">
         <form class="d-flex" role="search" action="/search" method="GET">
           <input
-            class="form-control me-2 search-input"
+            class="form-control me-2 <%= path !== '/' ? 'glass-input' : 'search-input' %>"
             name="q"
             type="search"
             placeholder="Search"
             aria-label="Search" />
-          <button class="btn btn-outline-dark search-btn" type="submit">
+          <button class="btn dark-search-btn" type="submit">
             <i class="bi bi-search"></i>
           </button>
         </form>
