@@ -4,8 +4,6 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 
-app.set("trust proxy", 1);
-
 // Import configuration
 const config = require("./config");
 
