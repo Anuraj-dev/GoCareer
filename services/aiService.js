@@ -1,14 +1,14 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const logger = require("../middleware/logger"); // Assuming logger is in middleware
-require("dotenv").config();
+const logger = require("../middleware/logger");
+const config = require("../config");
 
 // Initialize Gemini API
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const genAI = new GoogleGenerativeAI(config.api.googleApiKey);
 
-// Configure Gemini 2.0 Flash model
+// Configure Gemini model
 async function getGeminiModel() {
   return genAI.getGenerativeModel({
-    model: "gemini-2.0-flash", // Ensure this model name is up-to-date
+    model: config.api.geminiModel,
   });
 }
 
@@ -186,6 +186,4 @@ Consider the student's interests and income level in your recommendations.`;
 
 module.exports = {
   getCareerRecommendationsFromAI,
-  // getGeminiModel, // Not exporting as it's internal to this service
-  // validateAIResponse // Also internal for now, or could be exported if needed elsewhere
 }; 

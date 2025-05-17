@@ -1,4 +1,5 @@
 const winston = require('winston');
+const config = require('../config');
 
 // Configure winston logger
 const logger = winston.createLogger({
@@ -8,13 +9,13 @@ const logger = winston.createLogger({
     winston.format.json()
   ),
   transports: [
-    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'logs/combined.log' }),
+    new winston.transports.File({ filename: `${config.paths.logs}/error.log`, level: 'error' }),
+    new winston.transports.File({ filename: `${config.paths.logs}/combined.log` }),
   ],
 });
 
 // Add console transport in development
-if (process.env.NODE_ENV !== 'production') {
+if (config.server.env !== 'production') {
   logger.add(new winston.transports.Console({
     format: winston.format.simple(),
   }));
