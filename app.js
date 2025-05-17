@@ -8,6 +8,7 @@ const path = require("path");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const logger = require("./middleware/logger");
 
 // Initialize Express app
 const app = express();
@@ -28,9 +29,23 @@ app.use(
     secret,
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 3600000 }, // 1 hour
+    cookie: {
+      maxAge: 3600000, // 1 hour
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    },
   })
 );
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  logger.error("Unhandled error:", { error: err.message, stack: err.stack });
+  res.status(500).json({
+    success: false,
+    error: "Internal server error",
+    requestId: Date.now().toString(),
+  });
+});
 
 // Set view engine to EJS
 app.set("view engine", "ejs");
@@ -325,21 +340,6 @@ app.post("/test", async (req, res) => {
     res.redirect("/career-paths");
   } catch (error) {
     console.error("Error processing test:", error);
-    // Fallback to default recommendations if any error occurs
-    const defaultRecommendations = getDefaultCareerRecommendations(userData);
-    if (defaultRecommendations && defaultRecommendations.length > 0) {
-      req.session.careerPaths = defaultRecommendations;
-      req.session.recommendationSource =
-        "Default Recommendations (Error Fallback)";
-    } else {
-      req.session.careerPaths = [];
-      req.session.recommendationSource = "Error - No Recommendations Available";
-    }
-    res.redirect("/career-paths");
-  }
-});
-
-// Career paths results route
 app.get("/career-paths", (req, res) => {
   if (!req.session.careerPaths) {
     return res.redirect("/assessment");

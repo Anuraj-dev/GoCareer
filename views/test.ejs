@@ -195,6 +195,21 @@
         justify-content: space-between;
         margin: 2rem 0;
         counter-reset: step;
+        position: relative;
+      }
+
+      /* Connecting line behind the steps */
+      .progress-bar-custom::before {
+        content: "";
+        position: absolute;
+        width: calc(100% - 60px);
+        height: 2px;
+        background-color: #e0e0e0;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 0;
+        transition: all 0.3s ease;
       }
 
       .progress-step {
@@ -202,6 +217,7 @@
         position: relative;
         text-align: center;
         padding: 0 20px;
+        z-index: 1;
       }
 
       .progress-step::before {
@@ -219,6 +235,8 @@
         text-align: center;
         font-weight: bold;
         transition: all 0.3s ease;
+        position: relative;
+        z-index: 2;
       }
 
       .progress-step::after {
@@ -226,10 +244,10 @@
         position: absolute;
         width: 100%;
         height: 2px;
-        background-color: #e0e0e0;
+        background-color: transparent;
         top: 15px;
         left: 50%;
-        z-index: -1;
+        z-index: 1;
         transition: all 0.3s ease;
       }
 
@@ -247,10 +265,36 @@
         border-color: #183550;
         background: #183550;
         color: white;
+        box-shadow: 0 0 0 3px rgba(24, 53, 80, 0.1);
       }
 
-      .progress-step.active:not(:last-child)::after {
-        background: #183550;
+      .progress-step.completed::before {
+        border-color: #68b0e3;
+        background: #68b0e3;
+        color: white;
+      }
+
+      /* Style for completed sections of the connecting line */
+      .progress-bar-custom::after {
+        content: "";
+        position: absolute;
+        height: 2px;
+        background-color: #68b0e3;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 0;
+        transition: all 0.5s ease;
+        width: 0;
+      }
+
+      /* Update line width based on current step */
+      .step-2 .progress-bar-custom::after {
+        width: calc(25% + 15px);
+      }
+      
+      .step-3 .progress-bar-custom::after {
+        width: calc(75% - 15px);
       }
 
       /* Buttons */
@@ -570,6 +614,9 @@
           currentStep = stepNumber;
           updateProgressBar();
           
+          // Update progress bar container class for line animation
+          document.querySelector('.card-body').className = `card-body step-${stepNumber}`;
+          
           prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
           nextBtn.innerHTML = currentStep === 3 ? 'Submit <i class="fas fa-arrow-right ms-2"></i>' : 'Continue <i class="fas fa-arrow-right ms-2"></i>';
         }
@@ -682,26 +729,7 @@
         // Submit form
         async function submitForm() {
           document.getElementById('loadingOverlay').style.display = 'flex';
-          
-          const formData = new FormData(form);
-          try {
-            const response = await fetch('/test', {
-              method: 'POST',
-              body: new URLSearchParams(formData),
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-              }
-            });
-            
-            if (response.ok) {
-              const result = await response.json();
-              displayCareerResults(result);
-            }
-          } catch (error) {
-            console.error('Error:', error);
-          } finally {
-            document.getElementById('loadingOverlay').style.display = 'none';
-          }
+          form.submit(); // Submit the form normally to allow server-side redirect
         }
 
         // Display career results

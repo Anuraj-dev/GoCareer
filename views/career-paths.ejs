@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: "Space Grotesk", sans-serif;
+            background: url('/images/background.jpeg') center/cover no-repeat fixed;
             min-height: 100vh;
-            background: url('/images/background.jpeg') no-repeat center center fixed;
-            background-size: cover;
             position: relative;
         }
 
+        /* Add an overlay to ensure text readability */
         body::before {
             content: '';
             position: fixed;
@@ -25,10 +25,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(240, 248, 255, 0.92);
+            background: rgba(255, 255, 255, 0.85);
             z-index: 0;
         }
 
+        /* Ensure content appears above the overlay */
         .navbar, .container {
             position: relative;
             z-index: 1;
@@ -36,11 +37,11 @@
 
         /* Navbar Styles */
         .navbar {
-            background: #f0f8ff;
-            font-family: 'Space Grotesk', sans-serif;
+            background: transparent;
+            font-family: "Space Grotesk", sans-serif;
             position: relative;
             z-index: 1;
-            border-bottom: 1px solid rgba(24, 53, 80, 0.1);
+            padding: 1.2rem 0;
         }
 
         .navbar-nav.mx-auto {
@@ -50,25 +51,55 @@
             transform: translateX(-50%);
         }
 
+        .navbar-brand {
+            font-family: "Space Grotesk", monospace;
+            font-weight: 700;
+            font-size: 2.4rem;
+            letter-spacing: -1px;
+            color: #183550;
+        }
+
+        /* Search Styles */
         .search-input {
             min-width: 200px;
             padding: 0.6rem 1rem;
-            background: rgba(255, 255, 255, 0.80);
+            background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(24, 53, 80, 0.1);
             color: #000;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
+        .search-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(24, 53, 80, 0.2);
+            box-shadow: 0 0 0 2px rgba(24, 53, 80, 0.1);
+        }
+
+        .search-btn {
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(24, 53, 80, 0.2);
+            color: #183550;
+        }
+
+        .search-btn:hover {
+            background: rgba(24, 53, 80, 0.05);
+            border-color: #183550;
+        }
+
         .nav-link {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: "Plus Jakarta Sans", sans-serif;
             font-weight: 500;
             letter-spacing: -0.2px;
             position: relative;
             padding: 0.5rem 1.8rem;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            opacity: 1.0;
-            color: #183550 !important;
+            opacity: 0.75;
         }
 
         .nav-link:hover {
@@ -316,7 +347,10 @@
   <body>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">GoCareer</a>
+        <a class="navbar-brand" href="/">
+          <img src="/images/logo.png" style="width: 100px; height: 100px" alt="GoCareer Logo"/>
+          GoCareer
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -327,6 +361,19 @@
             <a class="nav-link" href="/about">About Us</a>
             <a class="nav-link" href="/insights">Insights</a>
             <a class="nav-link" href="/help">Help</a>
+          </div>
+          <div class="navbar-nav ms-auto">
+            <form class="d-flex" role="search" action="/search" method="GET">
+              <input
+                class="form-control me-2 search-input"
+                name="q"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"/>
+              <button class="btn btn-outline-dark search-btn" type="submit">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
           </div>
         </div>
       </div>
