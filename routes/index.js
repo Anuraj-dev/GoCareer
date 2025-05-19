@@ -25,5 +25,47 @@ router.get("/career-paths", (req, res, next) => {
   res.redirect("/assessment/career-paths");
 });
 
-module.exports = router;
+// Career roadmap route
+router.get("/career-roadmap/:title", (req, res) => {
+  const careerTitle = req.params.title;
 
+  try {
+    // Check if we have a career with this title in the session
+    let careerDetails = null;
+    if (req.session.careerPaths) {
+      careerDetails = req.session.careerPaths.find(
+        (c) =>
+          c.title.toLowerCase() ===
+          decodeURIComponent(careerTitle).toLowerCase()
+      );
+    }
+
+    if (!careerDetails) {
+      req.app.locals.logger.warn(
+        `[Routes] Career title ${careerTitle} not found in session data`
+      );
+      // Still proceed to the page, will load data via API
+    }
+
+    res.render("career-roadmap", {
+      careerTitle: decodeURIComponent(careerTitle),
+      careerDetails: careerDetails || {},
+    });
+  } catch (error) {
+    req.app.locals.logger.error(
+      `[Routes] Error rendering career roadmap for title ${careerTitle}: ${error.message}`
+    );
+    res.render("error", {
+      message: "Error loading career roadmap",
+      error: {
+        status: 500,
+        details:
+          req.app.get("env") === "development"
+            ? error.message
+            : "Internal server error",
+      },
+    });
+  }
+});
+
+module.exports = router;

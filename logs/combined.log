@@ -20,3 +20,8 @@
 {"level":"info","message":"AI Service: Attempt 1 for request 49htrXcMikLcA8NmkM2Vr5RtgUpDrU8d","timestamp":"2025-05-19T04:36:42.896Z"}
 {"level":"info","message":"AI Service: Successfully generated recommendations for request 49htrXcMikLcA8NmkM2Vr5RtgUpDrU8d","timestamp":"2025-05-19T04:36:50.900Z"}
 {"level":"info","message":"[CareerController] AI recommendations successful for session: 49htrXcMikLcA8NmkM2Vr5RtgUpDrU8d","timestamp":"2025-05-19T04:36:50.901Z"}
+{"level":"info","message":"[CareerController] Attempting AI recommendations for session: C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:37.647Z","userData":{"after10th":null,"age":"20","higherStudies":"Yes","incomeLevel":"low","interests":["science"],"location":"Tezpur","qualification":"Class 12","stream":"Science","subjects":"PCM"}}
+{"level":"info","message":"AI Service: Processing career recommendation request C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:37.652Z","userData":{"after10th":null,"age":"20","higherStudies":"Yes","incomeLevel":"low","interests":["science"],"location":"Tezpur","qualification":"Class 12","stream":"Science","subjects":"PCM"}}
+{"level":"info","message":"AI Service: Attempt 1 for request C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:37.653Z"}
+{"level":"info","message":"AI Service: Successfully generated recommendations for request C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:45.300Z"}
+{"level":"info","message":"[CareerController] AI recommendations successful for session: C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:45.302Z"}
