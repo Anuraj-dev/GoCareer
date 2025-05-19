@@ -16,18 +16,18 @@ GoCareer is a web application designed to help rural students discover suitable 
 ## Technology Stack
 
 - **Backend:** Node.js, Express.js
-- **AI:** Google Gemini 2.0 Flash AI (`@google/generative-ai`)
-- **Templating Engine:** EJS (Embedded JavaScript templates)
+- **AI:** Google Gemini 2.0 Flash AI (`@google/generative-ai` v0.1.2)
+- **Templating Engine:** EJS v3.1.10 (Embedded JavaScript templates)
 - **Database:** (No dedicated database) Uses JSON files for default career data.
 - **Middleware:**
-    - `body-parser`: For parsing request bodies.
-    - `express-session`: For session management.
-    - `dotenv`: For environment variable management.
-    - `winston`: For logging.
-    - `express-validator`: For input validation.
-    - `express-rate-limit`: For API rate limiting.
-    - `node-cache`: For caching API responses.
-- **Development:** `nodemon` for automatic server restarts.
+    - `body-parser` v2.2.0: For parsing request bodies.
+    - `express-session` v1.18.1: For session management.
+    - `dotenv` v16.3.1: For environment variable management.
+    - `winston` v3.17.0: For logging.
+    - `express-validator` v7.2.1: For input validation.
+    - `express-rate-limit` v7.5.0: For API rate limiting.
+    - `node-cache` v5.1.2: For caching API responses.
+- **Development:** `nodemon` v3.0.1 for automatic server restarts.
 
 ## Setup Instructions
 
@@ -36,11 +36,11 @@ GoCareer is a web application designed to help rural students discover suitable 
 - Node.js (v14.x or later recommended)
 - npm (Node Package Manager)
 
-### Steps
+### Installation Steps
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/yourusername/go-career.git
     cd go-career
     ```
 
@@ -50,7 +50,7 @@ GoCareer is a web application designed to help rural students discover suitable 
     ```
 
 3.  **Set Up Environment Variables:**
-    Create a `.env` file in the root of the project and add the following variables:
+    Create a `.env` file in the root of the project with the following variables:
 
     ```env
     # Google Generative AI API Key
@@ -65,54 +65,84 @@ GoCareer is a web application designed to help rural students discover suitable 
     # Node Environment (development or production)
     NODE_ENV=development
     ```
-    - Replace `your_gemini_api_key_here` with your actual Google Gemini API key.
-    - Replace `your_strong_session_secret_here` with a secure, random string for session encryption.
+
+    > **Note:** You'll need to obtain a Gemini API key from the [Google AI Studio](https://makersuite.google.com/) to use the AI features.
 
 ## Running the Application
 
-- **Development Mode (with nodemon):**
-  If you have `nodemon` installed globally, or if it's correctly configured in `package.json` (which it is as a dev dependency):
-  ```bash
-  npm run start # (Assuming the "start" script in package.json uses nodemon, or you can run nodemon app.js directly if preferred)
-  # The package.json currently has "start": "node app.js". For development with nodemon, you might add a script like "dev": "nodemon app.js"
-  # or run directly: npx nodemon app.js
-  ```
-  The current `start` script (`node app.js`) is more suited for production. To run with `nodemon` during development, you can use:
-  ```bash
-  npx nodemon app.js
-  ```
+### Development Mode:
 
-- **Production Mode:**
-  ```bash
-  npm start
-  ```
+For development with hot-reloading:
 
-Once the server is running, you can access the application at `http://localhost:PORT` (e.g., `http://localhost:3000` if `PORT` is 3000).
+```bash
+npx nodemon app.js
+```
+
+Or add a dev script to package.json:
+```json
+"scripts": {
+  "start": "node app.js",
+  "dev": "nodemon app.js"
+}
+```
+
+Then run:
+```bash
+npm run dev
+```
+
+### Production Mode:
+
+```bash
+npm start
+```
+
+Access the application at `http://localhost:3000` (or your configured PORT).
 
 ## Project Structure
 
 ```
 go-career/
-├── app.js                # Main application file (Express setup, routes, core logic)
+├── app.js                # Main application file
+├── config/               # Configuration files
+├── controllers/          # Request handlers
 ├── data/                 # Default career data (JSON files)
-├── logs/                 # Log files (created by Winston)
-├── middleware/           # Custom Express middleware (cache, logger, rateLimit, validation)
-├── node_modules/         # Project dependencies (installed via npm)
-├── public/               # Static assets (CSS, client-side JS, images)
-├── routes/               # Route handlers (e.g., api.js)
-├── services/             # Business logic services (e.g., aiService.js)
-├── views/                # EJS templates for web pages (e.g., home.ejs, test.ejs, error.ejs)
-├── .env                  # Environment variables (needs to be created manually)
-├── .gitignore            # Specifies intentionally untracked files that Git should ignore
-├── package-lock.json     # Records exact versions of dependencies
+├── logs/                 # Log files
+├── middleware/           # Custom Express middleware
+├── models/               # Data models
+├── public/               # Static assets (CSS, JS, images)
+├── routes/               # API and route definitions
+├── services/             # Business logic services
+├── utils/                # Utility functions
+├── views/                # EJS templates for web pages
+├── .env                  # Environment variables (create manually)
+├── .gitignore            # Git ignore file
 ├── package.json          # Project metadata and dependencies
-└── README.md             # This file
+└── README.md             # Project documentation
 ```
+
+## API Documentation
+
+The application provides the following API endpoints:
+
+- **GET /api/health**: Health check endpoint
+- **POST /api/recommendations**: Get career recommendations based on user data
 
 ## Contributing
 
-(Optional: Add guidelines for contributing to the project if applicable.)
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-(Optional: Specify the license for your project, e.g., MIT License.) 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Google Gemini AI for powering the career recommendations
+- All contributors who have helped shape this project 

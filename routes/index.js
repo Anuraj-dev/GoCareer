@@ -26,3 +26,4 @@ router.get("/career-paths", (req, res, next) => {
 });
 
 module.exports = router;
+

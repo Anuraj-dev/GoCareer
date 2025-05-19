@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getCareerRecommendationsFromAI } = require("../services/aiService");
+const { getCareerRecommendationsFromAI, getCareerRoadmapFromAI } = require("../services/aiService");
 const logger = require("../middleware/logger");
 const cacheMiddleware = require("../middleware/cache");
 const { validateRecommendationRequest, validate } = require("../middleware/validation");
@@ -38,6 +38,45 @@ router.post("/recommendations",
       res.status(500).json({
         success: false,
         error: "An unexpected error occurred while fetching career recommendations.",
+        requestId,
+      });
+    }
+  });
+
+// API route for career roadmap
+router.post("/career-roadmap",
+  apiLimiter,
+  async (req, res) => {
+    const { careerTitle, careerDetails } = req.body;
+    const requestId = req.headers['x-request-id'] || `roadmap-${Date.now().toString()}`;
+
+    if (!careerTitle) {
+      return res.status(400).json({
+        success: false,
+        error: "Career title is required",
+        requestId
+      });
+    }
+
+    try {
+      const roadmap = await getCareerRoadmapFromAI(careerTitle, careerDetails, requestId);
+
+      if (roadmap) {
+        logger.info(`[API /career-roadmap] Successfully generated roadmap for ${careerTitle}, request ${requestId}`);
+        res.json({ success: true, roadmap, requestId });
+      } else {
+        logger.error(`[API /career-roadmap] AI service failed to return roadmap for ${careerTitle}, request ${requestId}`);
+        res.status(500).json({
+          success: false,
+          error: "Failed to get career roadmap from AI service after multiple attempts.",
+          requestId,
+        });
+      }
+    } catch (error) {
+      logger.error(`[API /career-roadmap] Unexpected error for request ${requestId}: ${error.message}`, { stack: error.stack });
+      res.status(500).json({
+        success: false,
+        error: "An unexpected error occurred while fetching career roadmap.",
         requestId,
       });
     }

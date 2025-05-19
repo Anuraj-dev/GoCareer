@@ -52,28 +52,32 @@ app.use((req, res) => {
 });
 
 // Start the server with port fallback logic
-const PORT = config.server.port;
-const server = app
-  .listen(PORT, () => {
-    console.log(`Go Career Server running on port ${PORT}`);
-    console.log(
-      `Open http://localhost:${PORT} in your browser to access Go Career`
-    );
-  })
-  .on("error", (err) => {
-    if (err.code === "EADDRINUSE") {
-      console.error(`Port ${PORT} is already in use.`);
-      console.log(`Attempting to use alternative port ${PORT + 1}...`);
+const PORT = process.env.PORT || 8000;
+let currentPort = PORT;
+const MAX_PORT_ATTEMPTS = 5;
+let attempts = 0;
+
+function startServer(port) {
+  attempts++;
+  return app.listen(port, () => {
+    console.log(`Go Career Server running on port ${port}`);
+    console.log(`Open http://localhost:${port} in your browser to access Go Career`);
+  }).on('error', (err) => {
+    if (err.code === 'EADDRINUSE' && attempts < MAX_PORT_ATTEMPTS) {
+      console.error(`Port ${port} is already in use.`);
+      const newPort = parseInt(port) + 1;
+      console.log(`Attempting to use alternative port ${newPort}...`);
       // Try the next port
-      const newPort = PORT + 1;
-      server.close();
-      app.listen(newPort, () => {
-        console.log(`Go Career Server running on alternative port ${newPort}`);
-        console.log(
-          `Open http://localhost:${newPort} in your browser to access Go Career`
-        );
-      });
+      return startServer(newPort);
+    } else if (attempts >= MAX_PORT_ATTEMPTS) {
+      console.error(`Failed to find an available port after ${MAX_PORT_ATTEMPTS} attempts.`);
+      console.error('Please free up one of the ports or modify the PORT environment variable.');
+      process.exit(1);
     } else {
-      console.error("Error starting server:", err);
+      console.error('Error starting server:', err);
+      process.exit(1);
     }
   });
+}
+
+startServer(currentPort);
