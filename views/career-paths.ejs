@@ -807,7 +807,9 @@
             </div>
           </div>
           <div class="career-card-footer">
-            <button class="explore-btn" data-career-title="<%= career.title %>">Explore More</button>
+            <button class="explore-btn" data-career-title="<%= career.title %>">
+              Explore More
+            </button>
           </div>
         </div>
         <% }); %>
@@ -874,6 +876,19 @@
             }
           }, 1500);
         }
+
+        // Add event handlers for explore-btn buttons
+        const exploreButtons = document.querySelectorAll(".explore-btn");
+        exploreButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const careerTitle = this.getAttribute("data-career-title");
+            if (careerTitle) {
+              window.location.href = `/career-roadmap/${encodeURIComponent(
+                careerTitle
+              )}`;
+            }
+          });
+        });
 
         // Profile accordion functionality
         const userSummary = document.querySelector(".user-summary");

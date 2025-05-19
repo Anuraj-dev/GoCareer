@@ -25,3 +25,17 @@
 {"level":"info","message":"AI Service: Attempt 1 for request C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:37.653Z"}
 {"level":"info","message":"AI Service: Successfully generated recommendations for request C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:45.300Z"}
 {"level":"info","message":"[CareerController] AI recommendations successful for session: C5vSL7_R8n65ujpvkcRGuLw-LB8IHKx_","timestamp":"2025-05-19T05:08:45.302Z"}
+{"level":"warn","message":"[Routes] No career paths in session. Redirecting to /assessment.","timestamp":"2025-05-19T05:20:48.944Z"}
+{"level":"info","message":"[CareerController] Attempting AI recommendations for session: Jqg_BaCey1iAfWlOdVo2a7ea-jWPTSfe","timestamp":"2025-05-19T05:20:56.960Z","userData":{"after10th":null,"age":"18","higherStudies":"No","incomeLevel":"","interests":[],"location":"Gwahati","qualification":"Class 12","stream":"Science","subjects":"PCM"}}
+{"level":"info","message":"AI Service: Processing career recommendation request Jqg_BaCey1iAfWlOdVo2a7ea-jWPTSfe","timestamp":"2025-05-19T05:20:56.962Z","userData":{"after10th":null,"age":"18","higherStudies":"No","incomeLevel":"","interests":[],"location":"Gwahati","qualification":"Class 12","stream":"Science","subjects":"PCM"}}
+{"level":"info","message":"AI Service: Attempt 1 for request Jqg_BaCey1iAfWlOdVo2a7ea-jWPTSfe","timestamp":"2025-05-19T05:20:56.964Z"}
+{"level":"info","message":"AI Service: Successfully generated recommendations for request Jqg_BaCey1iAfWlOdVo2a7ea-jWPTSfe","timestamp":"2025-05-19T05:21:04.637Z"}
+{"level":"info","message":"[CareerController] AI recommendations successful for session: Jqg_BaCey1iAfWlOdVo2a7ea-jWPTSfe","timestamp":"2025-05-19T05:21:04.638Z"}
+{"level":"info","message":"AI Service: Processing career roadmap request for Technician - Electronics/Electrical, request ID roadmap-1747632073338","timestamp":"2025-05-19T05:21:13.339Z"}
+{"level":"info","message":"AI Service: Roadmap attempt 1 for Technician - Electronics/Electrical, request roadmap-1747632073338","timestamp":"2025-05-19T05:21:13.341Z"}
+{"level":"info","message":"AI Service: Successfully generated roadmap for Technician - Electronics/Electrical, request roadmap-1747632073338","timestamp":"2025-05-19T05:21:23.369Z"}
+{"level":"info","message":"[API /career-roadmap] Successfully generated roadmap for Technician - Electronics/Electrical, request roadmap-1747632073338","timestamp":"2025-05-19T05:21:23.370Z"}
+{"level":"info","message":"AI Service: Processing career roadmap request for Data Entry Operator, request ID roadmap-1747632095104","timestamp":"2025-05-19T05:21:35.104Z"}
+{"level":"info","message":"AI Service: Roadmap attempt 1 for Data Entry Operator, request roadmap-1747632095104","timestamp":"2025-05-19T05:21:35.105Z"}
+{"level":"info","message":"AI Service: Successfully generated roadmap for Data Entry Operator, request roadmap-1747632095104","timestamp":"2025-05-19T05:21:46.160Z"}
+{"level":"info","message":"[API /career-roadmap] Successfully generated roadmap for Data Entry Operator, request roadmap-1747632095104","timestamp":"2025-05-19T05:21:46.160Z"}
