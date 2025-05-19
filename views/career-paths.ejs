@@ -766,8 +766,8 @@
               </div>
               <div class="stat-item">
                 <div class="stat-value">
-                  <%= career.path_type === "immediate" ? "Immediate" : "4-5
-                  years" %>
+                  <% var duration = career.path_type === "immediate" ?
+                  "Immediate" : "4-5 years"; %><%= duration %>
                 </div>
                 <div class="stat-label">Duration</div>
               </div>
@@ -783,15 +783,14 @@
 
               <h3>Required Skills</h3>
               <div class="skills-container">
-                <% career.skills.forEach(skill => { %>
+                <% career.skills.forEach(function(skill) { %>
                 <span class="skill-tag"><%= skill %></span>
                 <% }); %>
               </div>
-
               <h3>Requirements</h3>
               <ul>
                 <% if (Array.isArray(career.requirements)) { %> <%
-                career.requirements.forEach(req => { %>
+                career.requirements.forEach(function(req) { %>
                 <li><%= req %></li>
                 <% }); %> <% } else { %>
                 <li><%= career.requirements %></li>
