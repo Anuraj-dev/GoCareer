@@ -73,3 +73,7 @@ Session data lives in memory, so a restart clears any assessment in progress. Lo
 | `POST` | `/api/career-roadmap` | Returns a roadmap for `careerTitle`. `careerDetails` is optional and adds context. |
 
 All three routes share the rate limit from the list above. Over the limit, the API returns `429`.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
