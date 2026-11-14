@@ -1,148 +1,75 @@
-# GoCareer - Career Discovery App
+<p align="center">
+  <img src="public/images/logo.png" alt="GoCareer logo" width="88" height="88" />
+</p>
 
-GoCareer is a web application designed to help rural students discover suitable career paths using Google's Gemini AI. It provides personalized career recommendations based on user qualifications, interests, and other relevant factors.
+<h1 align="center">GoCareer</h1>
 
-## Key Features
+<p align="center">
+  Career guidance for students in rural India, powered by Gemini 2.0 Flash.<br />
+  Answer a short assessment and get six career paths with monthly salary ranges. Open a roadmap for any of them.
+</p>
 
-- **AI-Powered Career Recommendations:** Utilizes Google's Gemini 2.0 Flash AI to generate personalized career suggestions.
-- **User Assessment:** Collects user information (qualification, stream, subjects, age, location, higher studies preference) through an intuitive form.
-- **Fallback System:** Provides default career recommendations from a predefined dataset if AI recommendations are unavailable.
-- **Dynamic Content:** Uses EJS templating for server-side rendering of dynamic web pages.
-- **Session Management:** Maintains user session to store assessment data and results.
-- **API Endpoints:** Includes API endpoints for career recommendations and health checks, with rate limiting and caching.
-- **Structured Logging:** Implements logging for errors and application events.
-- **Input Validation:** Validates user input for API requests.
+<p align="center">
+  <a href="#running-it">Run it locally</a>
+  ·
+  <a href="#configuration">Configuration</a>
+  ·
+  <a href="#api">API</a>
+</p>
 
-## Technology Stack
+GoCareer helps students who have finished Class 10 or Class 12 decide what to do next. The assessment asks for your qualification, age, location, stream, interests and whether you plan to study further. Gemini turns those answers into six career paths, each with requirements, skills and a salary range in rupees.
 
-- **Backend:** Node.js, Express.js
-- **AI:** Google Gemini 2.0 Flash AI (`@google/generative-ai` v0.1.2)
-- **Templating Engine:** EJS v3.1.10 (Embedded JavaScript templates)
-- **Database:** (No dedicated database) Uses JSON files for default career data.
-- **Middleware:**
-    - `body-parser` v2.2.0: For parsing request bodies.
-    - `express-session` v1.18.1: For session management.
-    - `dotenv` v16.3.1: For environment variable management.
-    - `winston` v3.17.0: For logging.
-    - `express-validator` v7.2.1: For input validation.
-    - `express-rate-limit` v7.5.0: For API rate limiting.
-    - `node-cache` v5.1.2: For caching API responses.
-- **Development:** `nodemon` v3.0.1 for automatic server restarts.
+It is a Node.js and Express server that renders EJS pages. There is no database. Live results need a Gemini API key from Google AI Studio. Without one, the app falls back to the career lists bundled in `data/`.
 
-## Setup Instructions
+## What you get
 
-### Prerequisites
+- **Six careers, sorted by top salary.** The prompt asks Gemini for exactly six paths, each with a title, description, requirements, skills and numeric `salary_min` and `salary_max` values in rupees. The server checks every field, makes up to three attempts when a reply is malformed or empty, and sorts the results by `salary_max`.
+- **A bundled fallback.** If the Gemini key is missing, the call fails, or all three attempts fail, the assessment uses `data/class10Careers.json` or `data/class12Careers.json` for your stream and filters them by your higher studies answer. The Class 12 lists are almost all higher education paths. Only the Fine Arts list has a path that does not need higher studies, and it has just one. A Class 12 student who answers No can get an empty results page.
+- **A roadmap for each career.** Opening a career calls `POST /api/career-roadmap`. The prompt asks Gemini for three stages, from entry level to senior, each with duration, skills, education, typical roles, a salary range and growth tips. The roadmap also lists learning resources, an industry outlook and a paragraph on local relevance.
+- **Search without Gemini.** `/search?q=` scores every career in the bundled lists by where the words appear in its title, description, requirements and skills. It drops weak matches and shows each title once. Search never calls Gemini, so it works without a key.
+- **Limits on the API.** Every `/api` route shares a limit of 100 requests per 15 minutes per IP. Recommendation requests are validated first, so a bad age or missing location gets a 400 before Gemini is called. Successful recommendations are cached in memory for an hour, keyed by the request body.
 
-- Node.js (v14.x or later recommended)
-- npm (Node Package Manager)
+## Running it
 
-### Installation Steps
+You need Node.js 20.18.0. `package.json` pins that version in `engines`, and other versions print an engine warning on install. The app also started on Node.js 26.13.1 in testing. A Gemini API key is optional, as described above.
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone https://github.com/yourusername/go-career.git
-    cd go-career
-    ```
+### Install
 
-2.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-
-3.  **Set Up Environment Variables:**
-    Create a `.env` file in the root of the project with the following variables:
-
-    ```env
-    # Google Generative AI API Key
-    GOOGLE_API_KEY=your_gemini_api_key_here
-
-    # Session Secret (a long, random string)
-    SECRET=your_strong_session_secret_here
-
-    # Port for the application (optional, defaults to 3000)
-    PORT=3000
-
-    # Node Environment (development or production)
-    NODE_ENV=development
-    ```
-
-    > **Note:** You'll need to obtain a Gemini API key from the [Google AI Studio](https://makersuite.google.com/) to use the AI features.
-
-## Running the Application
-
-### Development Mode:
-
-For development with hot-reloading:
-
-```bash
-npx nodemon app.js
+```sh
+git clone https://github.com/Anuraj-dev/GoCareer.git
+cd GoCareer
+npm ci
 ```
 
-Or add a dev script to package.json:
-```json
-"scripts": {
-  "start": "node app.js",
-  "dev": "nodemon app.js"
-}
-```
+### Start
 
-Then run:
-```bash
-npm run dev
-```
-
-### Production Mode:
-
-```bash
+```sh
 npm start
 ```
 
-Access the application at `http://localhost:3000` (or your configured PORT).
+Open `http://localhost:8000`. Set `PORT` in `.env` to use another port.
 
-## Project Structure
+To restart the server on every file change while you edit, run `npx nodemon app.js`. nodemon is a dev dependency, so `npm ci` already installs it.
 
-```
-go-career/
-├── app.js                # Main application file
-├── config/               # Configuration files
-├── controllers/          # Request handlers
-├── data/                 # Default career data (JSON files)
-├── logs/                 # Log files
-├── middleware/           # Custom Express middleware
-├── models/               # Data models
-├── public/               # Static assets (CSS, JS, images)
-├── routes/               # API and route definitions
-├── services/             # Business logic services
-├── utils/                # Utility functions
-├── views/                # EJS templates for web pages
-├── .env                  # Environment variables (create manually)
-├── .gitignore            # Git ignore file
-├── package.json          # Project metadata and dependencies
-└── README.md             # Project documentation
-```
+## Configuration
 
-## API Documentation
+Put these variables in a `.env` file in the project root. Git ignores that file.
 
-The application provides the following API endpoints:
+| Variable | Default | What it does |
+| --- | --- | --- |
+| `GOOGLE_API_KEY` | none | Gemini API key for recommendations and roadmaps. Get one from [Google AI Studio](https://aistudio.google.com/). |
+| `SECRET` | `go-career-default-secret-key` | Session secret. Set your own long, random value. |
+| `PORT` | `8000` | HTTP port. If it is taken, the server tries the next port, up to five attempts in total. |
+| `NODE_ENV` | `development` | In development, logs also print to the console, and error handlers receive the error details. Set `production` to turn both off. |
 
-- **GET /api/health**: Health check endpoint
-- **POST /api/recommendations**: Get career recommendations based on user data
+Session data lives in memory, so a restart clears any assessment in progress. Logs go to `logs/combined.log` and `logs/error.log`, which Git also ignores.
 
-## Contributing
+## API
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+| Method | Path | What it does |
+| --- | --- | --- |
+| `GET` | `/api/health` | Returns `status` and a timestamp. |
+| `POST` | `/api/recommendations` | Returns career paths for an assessment. Requires `qualification`, `age` from 14 to 25, and `location`. |
+| `POST` | `/api/career-roadmap` | Returns a roadmap for `careerTitle`. `careerDetails` is optional and adds context. |
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Google Gemini AI for powering the career recommendations
-- All contributors who have helped shape this project 
+All three routes share the rate limit from the list above. Over the limit, the API returns `429`.
